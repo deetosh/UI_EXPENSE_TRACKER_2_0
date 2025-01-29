@@ -1,9 +1,9 @@
 import axios from "axios";
 
-base_url = "http://localhost:8000/api/v1";
 
 export const callAPI = async (URL, method = 'POST',body=null, params = null) => {
     try {
+      const base_url = "http://localhost:8000/api/v1";
       const config = {
         url: base_url + URL,
         method: method,  
