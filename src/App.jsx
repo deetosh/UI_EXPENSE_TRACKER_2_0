@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import DButton from './atoms/DButton'
 import AuthPage from './modules/auth/authPage'
+import TableExample from './atoms/testable'
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
           onClick={() => setIsDarkMode(!isDarkMode)}
         />
       </div> */}
-      <AuthPage />
+      <TableExample/>
     </>
   )
 }
