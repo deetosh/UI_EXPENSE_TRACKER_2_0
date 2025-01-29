@@ -34,13 +34,17 @@ function App() {
         backgroundColor: "var(--bg-primary)",
         minHeight: "100vh",
         minWidth:"100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
       }}>
-        <DButton
+        {/* <DButton
           text="toggle theme"
           onClick={() => setIsDarkMode(!isDarkMode)}
-        />
+        /> */}
+        <AuthPage/>
       </div>
-      <AuthPage/>
+      
     </>
   )
 }

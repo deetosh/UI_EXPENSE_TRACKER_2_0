@@ -40,8 +40,10 @@ const Login = ({ className, onBackClick }) => {
     <form className={`signIn ${className}`} onSubmit={handleSubmit}>
       <h3>Welcome<br />Back !</h3>
       
-      <button className="fb" type="button">Log In With Google</button>
-      <p>- or -</p>
+      <button type="button" className="login-with-google-btn" >
+        Sign in with Google
+      </button>
+      <p className={`or_hi`}>- or -</p>
 
       {/* Email Input */}
       <input 
