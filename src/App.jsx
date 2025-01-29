@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import DButton from './atoms/DButton'
+import AuthPage from './modules/auth/authPage'
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <>
-      <div style={{
+      {/* <div style={{
         backgroundColor: "var(--bg-primary)",
         minHeight: "100vh",
         minWidth:"100vw",
@@ -27,7 +28,8 @@ function App() {
           text="toggle theme"
           onClick={() => setIsDarkMode(!isDarkMode)}
         />
-      </div>
+      </div> */}
+      <AuthPage />
     </>
   )
 }
