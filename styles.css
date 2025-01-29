@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+    --bg-primary: #ca7171;
+    --bg-secondary: #a0d9de;
+    --text-primary: #000000;
+    --text-secondary: #252121;
+    --button-primary: rgb(67, 174, 231);
+    --button-secondary: #71b8e4;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #181d3c;
+    --bg-secondary: #a0d9de;
+    --text-primary: #000000;
+    --text-secondary: #252121;
+    --button-primary: rgb(67, 174, 231);
+    --button-secondary: #71b8e4;
+}
