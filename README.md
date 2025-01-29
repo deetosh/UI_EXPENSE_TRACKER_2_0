@@ -1,8 +1,19 @@
-# React + Vite
+# EXPENSE TRACKER APPLICATION
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Members:
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<table>
+  <tr>
+    <th>Sl no.</th>
+    <th>Name</th>
+    <th>Roll no</th>
+    <th>Github username</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Rohit Bohra</td>
+    <td>22EE30039</td>
+    <td>RohitBohra-001</td>
+</td>
+  </tr>
+</table>
