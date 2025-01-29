@@ -30,7 +30,7 @@ function App() {
 
   return (
     <>
-      {/* <div style={{
+      <div style={{
         backgroundColor: "var(--bg-primary)",
         minHeight: "100vh",
         minWidth:"100vw",
@@ -40,6 +40,7 @@ function App() {
           onClick={() => setIsDarkMode(!isDarkMode)}
         />
       </div>
+      <AuthPage/>
     </>
   )
 }
