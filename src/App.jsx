@@ -5,6 +5,7 @@ import './App.css'
 import DButton from './atoms/DButton'
 import { callAPI } from './services/ApiHelper'
 import AuthPage from './modules/auth/authPage'
+import TableExample from './atoms/testable'
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
       <div style={{
         backgroundColor: "var(--bg-primary)",
         minHeight: "100vh",
-        minWidth:"100vw",
+        maxWidth:"80vw",
         display: "flex",
         justifyContent: "center",
         alignItems: "center"
@@ -41,10 +42,11 @@ function App() {
         {/* <DButton
           text="toggle theme"
           onClick={() => setIsDarkMode(!isDarkMode)}
-        /> */}
-        <AuthPage/>
+        />
+      </div> */}
+      <TableExample/>
+      {/* <AuthPage/> */}
       </div>
-      
     </>
   )
 }
