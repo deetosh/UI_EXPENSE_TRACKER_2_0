@@ -6,10 +6,15 @@ import DButton from './atoms/DButton'
 import { callAPI } from './services/ApiHelper'
 import AuthPage from './modules/auth/authPage'
 import TableExample from './atoms/testable'
+import Navbar from './modules/navbar/navbar'
+import { Outlet } from 'react-router-dom'
+
+const tabs = [
+  { label: "Dashboard", icon: 1, link: "dashboard" },
+  { label: "Admin", icon: 1, link: "admin" },
+];
 
 function App() {
-
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const signIn=async ()=>{
     const email_="aashray_tandon@gmail.com";
@@ -21,13 +26,6 @@ function App() {
     const response = await callAPI("/signin","POST",user);
     console.log(response);
   }
-  useEffect(() => {
-    if (isDarkMode) {
-      document.body.setAttribute("data-theme", "dark");
-    } else {
-      document.body.removeAttribute("data-theme");
-    }
-  }, [isDarkMode]);
 
   return (
     <>
@@ -36,16 +34,17 @@ function App() {
         minHeight: "100vh",
         minWidth:"100vw",
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
       }}>
-        {/* <DButton
-          text="toggle theme"
-          onClick={() => setIsDarkMode(!isDarkMode)}
-        />
-      </div> */}
-      <TableExample/>
-      {/* <AuthPage/> */}
+
+        <div>
+          <Navbar tabs={tabs}/>
+        </div>
+
+        <div>
+          <Outlet/>
+        </div>
+      
+      
       </div>
     </>
   )

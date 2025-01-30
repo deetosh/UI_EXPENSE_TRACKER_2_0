@@ -6,7 +6,7 @@ const DButton = (
     return (
         <button
             onClick={onClick}
-            className={`${buttonClass} ${textColor} ${buttonColor} px-6 py-2 font-bold rounded-3xl transition-all duration-300`}
+            className={`${buttonClass} ${textColor} ${buttonColor} min-w-30 min-h-10 px-6 py-2 font-bold rounded-3xl transition-all duration-300`}
         >
             {text}
         </button>

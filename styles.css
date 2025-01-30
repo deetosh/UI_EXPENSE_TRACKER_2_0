@@ -1,12 +1,16 @@
 @import "tailwindcss";
 
 :root {
-    --bg-primary: #ca7171;
+    --bg-primary: #ffffff;
     --bg-secondary: #a0d9de;
     --text-primary: #000000;
     --text-secondary: #252121;
     --button-primary: rgb(67, 174, 231);
     --button-secondary: #71b8e4;
+    --nav-primary: rgb(73, 57, 113);
+    --nav-secondary: #1b1a33;
+    --nav-text-primary: #ffffff;
+    --nav-text-selected: #000000;
 }
 
 [data-theme="dark"] {
