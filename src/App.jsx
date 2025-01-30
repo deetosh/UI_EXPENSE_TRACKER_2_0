@@ -34,7 +34,7 @@ function App() {
       <div style={{
         backgroundColor: "var(--bg-primary)",
         minHeight: "100vh",
-        maxWidth:"80vw",
+        minWidth:"100vw",
         display: "flex",
         justifyContent: "center",
         alignItems: "center"
