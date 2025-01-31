@@ -36,7 +36,9 @@ function App() {
         display: "flex",
       }}>
 
-        <div>
+        <div style={{
+          zIndex: 100,
+        }}>
           <Navbar tabs={tabs}/>
         </div>
 

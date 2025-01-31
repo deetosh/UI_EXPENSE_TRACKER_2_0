@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import Modal from '../../molecules/Modal'
 import DButton from '../../atoms/DButton';
+import Loader from '../../molecules/Loader';
 
 function Dashboard() {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -15,6 +16,7 @@ function Dashboard() {
             width:"100%",
         }}>
             <h1>Dashboard</h1>
+            {/* <Loader/> */}
             <DButton 
                 text={"Open Modal"}
                 onClick={()=>setIsModalOpen(!isModalOpen)}
