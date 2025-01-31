@@ -11,16 +11,26 @@ const icon_map = {
     5:"../../../public/icons/expenses-white.svg",
     6:"../../../public/icons/dashboard-white.svg",
 }
+const icon_map_dark = {
+    6:"../../../public/icons/dashboard.svg",
+    5:"../../../public/icons/expenses.svg",
+    4:"../../../public/icons/admin.svg",
+    3:"../../../public/icons/admin-white.svg",
+    2:"../../../public/icons/expenses-white.svg",
+    1:"../../../public/icons/dashboard-white.svg",
+}
 
 function Navbar({ tabs }) {
     const [activeIndex, setActiveIndex] = React.useState(0);
     const [isDarkMode, setIsDarkMode] = useState(false);
-
+    const [iconMap, setIconMap] = useState(icon_map);
     useEffect(() => {
         if (isDarkMode) {
           document.body.setAttribute("data-theme", "dark");
+          setIconMap(icon_map_dark);
         } else {
           document.body.removeAttribute("data-theme");
+          setIconMap(icon_map);
         }
       }, [isDarkMode]);
 
@@ -28,7 +38,7 @@ function Navbar({ tabs }) {
         <nav className="main-menu">
             <div style={{height:"100px", display:"flex", justifyContent:"center", alignItems:"center"}}>
                 <h1>Trackify</h1>
-                <img className="logo" src={icon_map[1]} alt="logo" />
+                <img className="logo" src={iconMap[1]} alt="logo" />
             </div>
             <ul>
                 {tabs.map((tab, index) => (
@@ -40,7 +50,7 @@ function Navbar({ tabs }) {
                         <b></b>
                         <b></b>
                         <Link to={tab.link} className='link'>
-                            <img src={`${activeIndex === index ? icon_map[index+1] : icon_map[6-index]}`} className={`nav-icon `}></img>
+                            <img src={`${activeIndex === index ? iconMap[index+1] : iconMap[6-index]}`} className={`nav-icon `}></img>
                             <span className="nav-text">{tab.label}</span>
                         </Link>
                     </li>
