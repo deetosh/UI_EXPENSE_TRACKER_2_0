@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <!-- Utility Icon -->
+  <symbol id="utility" viewBox="0 0 24 24">
+    <path d="M12 2L15 8H9L12 2ZM6 9H18V11H6V9ZM6 13H18V15H6V13ZM6 17H18V19H6V17Z" fill="black"/>
+  </symbol>
+  
+  <!-- Insurance Icon -->
+  <symbol id="insurance" viewBox="0 0 24 24">
+    <path d="M12 2L4 5V11C4 16 7 20 12 22C17 20 20 16 20 11V5L12 2ZM12 12L8 9L12 6L16 9L12 12Z" fill="black"/>
+  </symbol>
+  
+  <!-- Bank Fees Icon -->
+  <symbol id="bank_fees" viewBox="0 0 24 24">
+    <path d="M3 10L12 3L21 10V12H3V10ZM5 14H19V16H5V14ZM5 18H19V20H5V18Z" fill="black"/>
+  </symbol>
+  
+  <!-- Rent Icon -->
+  <symbol id="rent" viewBox="0 0 24 24">
+    <path d="M12 3L3 10V21H9V15H15V21H21V10L12 3Z" fill="black"/>
+  </symbol>
+  
+  <!-- Taxes Icon -->
+  <symbol id="taxes" viewBox="0 0 24 24">
+    <path d="M3 3H21V21H3V3ZM6 6H18V18H6V6ZM9 9H15V11H9V9ZM9 13H12V15H9V13Z" fill="black"/>
+  </symbol>
+  
+  <!-- Repair Icon -->
+  <symbol id="repair" viewBox="0 0 24 24">
+    <path d="M7 3H17L14 10H10L7 3ZM6 12H18V14H6V12ZM6 16H18V18H6V16Z" fill="black"/>
+  </symbol>
+  
+  <!-- Gifts Icon -->
+  <symbol id="gifts" viewBox="0 0 24 24">
+    <path d="M12 2C10 2 8 3 8 5C8 6 8 7 9 7H5V12H19V7H15C16 7 16 6 16 5C16 3 14 2 12 2ZM6 14V20H18V14H6Z" fill="black"/>
+  </symbol>
+  
+  <!-- Shopping Icon -->
+  <symbol id="shopping" viewBox="0 0 24 24">
+    <path d="M6 2L3 7V21H21V7L18 2H6ZM6 9H18V19H6V9Z" fill="black"/>
+  </symbol>
+  
+  <!-- Interest Icon -->
+  <symbol id="interest" viewBox="0 0 24 24">
+    <path d="M12 3A9 9 0 1 0 21 12A9 9 0 1 0 12 3ZM12 8H14V16H12V8ZM10 10H8V16H10V10Z" fill="black"/>
+  </symbol>
+  
+  <!-- Travel Icon -->
+  <symbol id="travel" viewBox="0 0 24 24">
+    <path d="M2 12L12 2L22 12L12 22L2 12ZM10 6V18H14V6H10Z" fill="black"/>
+  </symbol>
+  
+  <!-- Food Icon -->
+  <symbol id="food" viewBox="0 0 24 24">
+    <path d="M7 2V12H5V2H7ZM17 2V12H19V2H17ZM10 4H14V12H10V4ZM5 14H19V16H5V14ZM5 18H19V20H5V18Z" fill="black"/>
+  </symbol>
+  
+  <!-- Health Icon -->
+  <symbol id="health" viewBox="0 0 24 24">
+    <path d="M12 2L15 8H9L12 2ZM6 9H18V11H6V9ZM6 13H18V15H6V13ZM6 17H18V19H6V17Z" fill="black"/>
+  </symbol>
+  
+  <!-- Others Icon -->
+  <symbol id="others" viewBox="0 0 24 24">
+    <path d="M3 3H21V21H3V3ZM7 7H17V17H7V7Z" fill="black"/>
+  </symbol>
+</svg>
