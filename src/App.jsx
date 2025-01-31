@@ -40,7 +40,9 @@ function App() {
           <Navbar tabs={tabs}/>
         </div>
 
-        <div>
+        <div style={{
+          flexGrow:1
+        }}>
           <Outlet/>
         </div>
       
