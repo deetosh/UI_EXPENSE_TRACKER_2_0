@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./table.css"; // Import your CSS file
 
 const DynamicTable = ({ columns, data, onButtonClick, onAddCustomer }) => {
+  if(!data || data.length===0)return null;
   const [searchTerm, setSearchTerm] = useState("");
   const [rowsToShow, setRowsToShow] = useState(5);
   const [sortConfig, setSortConfig] = useState({ column: null, order: null });

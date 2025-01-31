@@ -11,7 +11,9 @@ import { Outlet } from 'react-router-dom'
 
 const tabs = [
   { label: "Dashboard", icon: 1, link: "dashboard" },
+  { label: "Expenses", icon: 1, link: "expenses" },
   { label: "Admin", icon: 1, link: "admin" },
+    
 ];
 
 function App() {

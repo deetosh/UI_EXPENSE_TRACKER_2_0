@@ -3,7 +3,7 @@ import Modal from '../../molecules/Modal'
 import DButton from '../../atoms/DButton';
 
 function Dashboard() {
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <>
         <div style={{

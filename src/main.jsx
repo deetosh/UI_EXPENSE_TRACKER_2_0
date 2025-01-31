@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Dashboard from './modules/dashboard/dashboard.jsx'
 import Admin from './modules/admin/admin.jsx'
 import AuthPage from './modules/auth/authPage.jsx'
+import Expenses from './modules/expenses/expenses.jsx'
 
 const router = createBrowserRouter([
   {
@@ -29,15 +30,20 @@ const router = createBrowserRouter([
         element: <Dashboard/>
       },
       {
+        path:"expenses",
+        element:<Expenses/>
+      },
+      {
         path:"admin",
         element: <Admin/>
       }
+      
     ]
   }
 ])
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
+  // </StrictMode>,
 )

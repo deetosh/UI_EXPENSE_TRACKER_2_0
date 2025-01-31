@@ -9,7 +9,7 @@ const icon_map = {
 }
 
 function Navbar({ tabs }) {
-    const [activeIndex, setActiveIndex] = React.useState(0);
+    const [activeIndex, setActiveIndex] = useState(0);
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
