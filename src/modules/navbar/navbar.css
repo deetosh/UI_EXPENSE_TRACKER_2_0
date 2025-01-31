@@ -60,7 +60,7 @@ body {
   top: -15px;
   height: 15px;
   width: 100%;
-  background: var(--nav-text-primary);
+  background: var(--nav-selected);
   display: none;
 }
 
@@ -80,7 +80,7 @@ body {
   bottom: -15px;
   height: 15px;
   width: 100%;
-  background: var(--nav-text-primary);
+  background: var(--nav-selected);
   display: none;
 }
 
@@ -103,7 +103,7 @@ body {
 .nav-item.active .link {
   text-decoration: none;
   color: var(--nav-primary);
-  background: var(--nav-text-primary);
+  background: var(--nav-selected);
 }
 
 .nav-icon {

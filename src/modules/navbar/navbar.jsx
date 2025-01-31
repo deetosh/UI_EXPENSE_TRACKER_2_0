@@ -54,10 +54,12 @@ function Navbar({ tabs }) {
                 <DButton
                     text={isDarkMode ? "Light Mode" : "Dark Mode"}
                     onClick={() => setIsDarkMode(!isDarkMode)}
+                    buttonClass='button-nav-primary'
                 />
                 <DButton
                     text = "Sign Out"
                     onClick={()=>{}}
+                    buttonClass='button-nav-primary'
                 />
             </div>
         </nav>
