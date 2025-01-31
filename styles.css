@@ -30,6 +30,8 @@
     --modal-text: #000000;
 
     --dialog-bg: rgba(0, 0, 0, 0.5);
+
+    --loader-color: #000000;
 }
 
 [data-theme="dark"] {
@@ -62,7 +64,9 @@
     --modal-shadow: rgba(0, 0, 0, 0.151);
     --modal-text: #000000;
 
-    --dialog-bg: rgba(255,255,255, 0.5);
+    --dialog-bg:rgba(255, 255, 255, 0.103);
+
+    --loader-color: #ffffff;
 }
 
 
