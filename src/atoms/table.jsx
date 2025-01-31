@@ -235,6 +235,13 @@ import './table.css';
 import DButton from "./DButton";
 
 const DTable = ({ headers, data, onDelete, onEdit }) => {
+  if(!data || data.length === 0) {
+    return (
+      <div className="recent-transactions card">
+        <h3>No expenses available</h3>
+      </div>
+    );
+  }
   return (
     <div className="recent-transactions card">
       <table>

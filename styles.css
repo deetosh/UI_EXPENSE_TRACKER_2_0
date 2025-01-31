@@ -32,6 +32,7 @@
     --dialog-bg: rgba(0, 0, 0, 0.5);
 
     --loader-color: #000000;
+    --loader-bg: #968c8c28;
 }
 
 [data-theme="dark"] {

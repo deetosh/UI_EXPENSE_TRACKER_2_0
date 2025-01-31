@@ -6,7 +6,7 @@ const Loader = () => {
     <div className="fixed inset-0 flex items-center justify-center" style={{
         height: "100vh",
         width: "100vw",
-        backgroundColor: "var(--dialog-bg)",
+        backgroundColor: "var(--loader-bg)",
     }}>
       <div id="loader">
         {[...Array(5)].map((_, index) => (
