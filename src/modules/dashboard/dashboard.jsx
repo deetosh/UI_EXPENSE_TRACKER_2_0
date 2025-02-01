@@ -55,7 +55,7 @@ function Dashboard() {
         { name: 'Remaining', value: 300 },
     ];
 
-    const [graphType, setGraphType] = useState('daily');
+    const [graphType, setGraphType] = useState('Present Week');
     const [graphData, setGraphData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -63,15 +63,28 @@ function Dashboard() {
     const totalSpent = expensesData.reduce((total, expense) => total + expense.spent, 0);
 
     const fetchGraphData = async () => {
-
-        const response = await callAPI('/expenses/daily', 'GET', {}, { type: graphType });
+        setIsLoading(true);
+        let graph_type = graphType === 'Present Week' ? 'weekly' : 'monthly';
+        const response = await callAPI('/expenses/daily', 'GET', {}, { type: graph_type });
         if (response.data && response.data.length > 0) {
             setGraphData(response.data);
         }
+        setIsLoading(false);
+    }
+
+    const fetchCategoryData = async () => {
+        setIsLoading(true);
+        let graph_type = graphType === 'Present Week' ? 'weekly' : 'monthly';
+        const response = await callAPI('/expenses/category', 'GET', {},{duration:graph_type});
+        if (response.data && response.data.length > 0) {
+            setGraphData(response.data);
+        }
+        setIsLoading(false);
     }
 
     useEffect(() => {
         fetchGraphData();
+        fetchCategoryData();
     }, [graphType]);
 
     return (
@@ -103,16 +116,16 @@ function Dashboard() {
                         height: "15%",
                     }}>
                         <DDropdown
-                            name="Weekly"
-                            data={["Weekly", "Monthly"]}
-                            func={(selected_category) => console.log("Selected: ",selected_category)}
+                            name="Present Week"
+                            data={["Present Week", "Present Month"]}
+                            func={setGraphType}
                         />
                     </div>
                     <div style={{
                         height: "85%",
                     }}>
                     <MyLineChart
-                        dataObjects={data}
+                        dataObjects={graphData}
                     />
                     </div>
                 </div>
