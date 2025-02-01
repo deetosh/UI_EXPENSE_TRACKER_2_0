@@ -103,8 +103,8 @@ function Expenses() {
         <Modal 
             openModal={isModalOpen}
             setOpenModal={setIsModalOpen}
-            height={"80vh"}
-            width={"50vw"}
+            height={"60vh"}
+            width={"30vw"}
             modalName={"Add Expense"}
         > 
            <ExpenseForm onAddExpense={handleSubmit}/> 

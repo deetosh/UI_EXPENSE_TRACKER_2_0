@@ -1,44 +1,108 @@
+/* Outermost container using viewport units */
 .expense-form {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+  width: 100%;          /* 50% of the viewport width */
+  height: 100%;         /* 70% of the viewport height */
+  padding: 2%;          /* Use percentage-based padding */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: auto;         /* Center horizontally (and vertically if container permits) */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Grouping input rows with percentage-based spacing */
+.input-group-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 2%;
+  width: 90%;           /* Occupies 90% of the outer container’s width */
+  height: 15%;          /* Set relative height; adjust as needed */
+}
+
+/* Form group styling for labels and inputs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 48%;           /* For side-by-side groups in row, use nearly half */
+  margin-bottom: 2%;
+}
+
+/* For full width elements like the Description field, add a custom class */
+.form-group.full-width {
+  width: 90%;
+}
+
+/* Label styling with percentage margins */
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 2%;
+  color: #333;
+  font-size: 1rem;
+}
+
+/* Input & select styling using percentage-based padding */
+.form-input {
+  width: 100%;
+  padding: 2%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s ease-in-out;
+}
+
+.form-input:focus {
+  border-color: #6a0dad;
+  outline: none;
+}
+
+.input-error {
+  border-color: red;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 1%;
+}
+
+/* Button container using percentage height */
+.add_Submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 10%;          /* Adjust based on the overall design */
+  margin-top: 2%;
+}
+
+/* Button styling with percentage paddings */
+.button-primary {
+  background: #6a0dad;
+  color: #fff;
+  padding: 1% 2%;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.button-primary:hover {
+  background: #5a0cad;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .input-group-row {
+    flex-direction: column;
+    gap: 2%;
+    height: auto;
   }
-  
   .form-group {
-    margin-bottom: 15px;
+    width: 90%;
   }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  input, select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .submit-btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .submit-btn:hover {
-    background-color: #45a049;
-  }
-  .add_Submit{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+}

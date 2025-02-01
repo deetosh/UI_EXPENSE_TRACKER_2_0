@@ -17,11 +17,13 @@ function Modal({
             <div className="fixed inset-0 flex items-center justify-center" style={{
                 height: "100vh",
                 width: "100vw",
+                
                 backgroundColor: "var(--dialog-bg)",
             }}>
                 <div className="modal-container" style={{
                     height: height ? height : "50vh",
                     width: width ? width : "50vw",
+                    borderRadius: "10px",
                 }}>
                     <div className="modal-header">
                         <div className="modal-name">{modalName}</div>

@@ -1,0 +1,79 @@
+.expense-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .input-group-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .form-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border 0.3s ease-in-out;
+  }
+  
+  .form-input:focus {
+    border-color: #6a0dad;
+    outline: none;
+  }
+  
+  .input-error {
+    border-color: red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .add_Submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .button-primary {
+    background: #6a0dad;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .button-primary:hover {
+    background: #5a0cad;
+  }
+  
+  @media (max-width: 600px) {
+    .input-group-row {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  
