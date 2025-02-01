@@ -3,6 +3,7 @@ import ExpenseCard from '../expenses/ExpenseCard';
 import MyLineChart from '../graph/Graph';
 import MyPieChart from '../graph/Chart';
 import { callAPI } from '../../services/ApiHelper';
+import DDropdown from '../../atoms/DDropdown';
 
 function Dashboard() {
     // Sample expense data with id and spent
@@ -79,7 +80,7 @@ function Dashboard() {
                 style={{
                     display: "flex",
                     flexDirection: "row",
-                    height: "50%",
+                    height: "60%",
                     width: "100%",
                     padding: "10px",
                     justifyContent: "center",
@@ -95,10 +96,25 @@ function Dashboard() {
                     boxSizing: "border-box",
                     // overflow:"scroll",
                     boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.22)",
+                    backgroundColor: "white",
+                    borderRadius: "20px",
                 }}>
+                    <div style={{
+                        height: "15%",
+                    }}>
+                        <DDropdown
+                            name="Weekly"
+                            data={["Weekly", "Monthly"]}
+                            func={(selected_category) => console.log("Selected: ",selected_category)}
+                        />
+                    </div>
+                    <div style={{
+                        height: "85%",
+                    }}>
                     <MyLineChart
                         dataObjects={data}
                     />
+                    </div>
                 </div>
                 <div style={{
                     width: "30%",
@@ -106,6 +122,8 @@ function Dashboard() {
                     padding: "20px",
                     boxSizing: "border-box",
                     boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.22)",
+                    backgroundColor: "white",
+                    borderRadius: "20px",
                 }}
                 >
                     <MyPieChart
@@ -120,7 +138,7 @@ function Dashboard() {
                 style={{
                     display: "flex",
                     flexDirection: "row",
-                    height: "50%",
+                    height: "40%",
                     width: "100%",
                     padding: "10px",
                     justifyContent: "center",
@@ -137,7 +155,9 @@ function Dashboard() {
                         height: "100%",
                         width: "70%",
                         // padding: "10px",
-                        boxSizing: "border-box"
+                        boxSizing: "border-box",
+                        backgroundColor: "white",
+                        borderRadius: "20px",
                     }}
                 >
                     <div
@@ -151,6 +171,7 @@ function Dashboard() {
                             height: "60vh",
                             boxSizing: "border-box",
                             boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.22)",
+                            borderRadius: "20px",
                         }}
                     >
                         {expensesData.map(expense => (
@@ -172,6 +193,8 @@ function Dashboard() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    backgroundColor: "white",
+                    borderRadius: "20px",
                 }}
                 >
                     <MyPieChart

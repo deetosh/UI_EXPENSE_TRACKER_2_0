@@ -179,7 +179,7 @@ const MyLineChart = ({dataObjects}) => (
     <YAxis dataKey="amount"/>
     <Tooltip />
     <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-    <Line type="monotone" dataKey="amount" stroke="#8884d8" activeDot={{ r: 7 }}/>
+    <Line type="monotone" dataKey="amount" stroke="#493971" strokeWidth={3} dot={{r:5}} activeDot={{ r: 10 }}/>
   </LineChart>
   </ResponsiveContainer>
 );
