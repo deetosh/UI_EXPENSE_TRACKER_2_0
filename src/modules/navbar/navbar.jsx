@@ -4,20 +4,20 @@ import DButton from '../../atoms/DButton';
 import { Link,NavLink } from 'react-router-dom';
 
 const icon_map = {
-    1:"../../../public/icons/dashboard.svg",
-    2:"../../../public/icons/expenses.svg",
-    3:"../../../public/icons/admin.svg",
-    4:"../../../public/icons/admin-white.svg",
-    5:"../../../public/icons/expenses-white.svg",
-    6:"../../../public/icons/dashboard-white.svg",
+    1:"/icons/dashboard.svg",
+    2:"/icons/expenses.svg",
+    3:"/icons/admin.svg",
+    4:"/icons/admin-white.svg",
+    5:"/icons/expenses-white.svg",
+    6:"/icons/dashboard-white.svg",
 }
 const icon_map_dark = {
-    6:"../../../public/icons/dashboard.svg",
-    5:"../../../public/icons/expenses.svg",
-    4:"../../../public/icons/admin.svg",
-    3:"../../../public/icons/admin-white.svg",
-    2:"../../../public/icons/expenses-white.svg",
-    1:"../../../public/icons/dashboard-white.svg",
+    6:"/icons/dashboard.svg",
+    5:"/icons/expenses.svg",
+    4:"/icons/admin.svg",
+    3:"/icons/admin-white.svg",
+    2:"/icons/expenses-white.svg",
+    1:"/icons/dashboard-white.svg",
 }
 
 function Navbar({ tabs }) {

@@ -2,14 +2,14 @@ import './ExpenseCard.css';
 
 // Mapping expense details keyed by id (without the spent field)
 const expenseDetailsMap = {
-  1: { title: "EDUCATION", image: "../../../public/icons/education.svg" },
-  2: { title: "FOOD", image: "../../../public/icons/food.svg" },
-  3: { title: "HEALTHCARE", image: "../../../public/icons/healthcare.svg" },
-  4: { title: "INVESTMENT", image: "../../../public/icons/investment.svg" },
-  5: { title: "PERSONAL", image: "../../../public/icons/personal.svg" },
-  6: { title: "TRANSPORT", image: "../../../public/icons/transport.svg" },
-  7: { title: "UTILITY", image: "../../../public/icons/utility.svg" },
-  8: { title: "OTHER", image: "../../../public/icons/other.svg" }
+  1: { title: "EDUCATION", image: "/icons/education.svg" },
+  2: { title: "FOOD", image: "/icons/food.svg" },
+  3: { title: "HEALTHCARE", image: "/icons/healthcare.svg" },
+  4: { title: "INVESTMENT", image: "/icons/investment.svg" },
+  5: { title: "PERSONAL", image: "/icons/personal.svg" },
+  6: { title: "TRANSPORT", image: "/icons/transport.svg" },
+  7: { title: "UTILITY", image: "/icons/utility.svg" },
+  8: { title: "OTHER", image: "/icons/other.svg" }
 };
 
 const ExpenseCard = ({ id, spent, percentage = 0 }) => {
