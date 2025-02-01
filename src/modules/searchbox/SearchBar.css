@@ -8,7 +8,10 @@
   background-color: white;
   display: flex;
   align-items: center;
+  outline: 2px solid rgb(73, 57, 113);
+  /* Added outline */
 }
+
 
 .input-wrapper input {
   background-color: transparent;
