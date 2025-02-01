@@ -10,13 +10,17 @@ export const callAPI = async (URL, method = 'POST', body = null, params = null) 
       method: method,
       data: method !== 'GET' ? body : undefined,
       params: params || undefined,
-      headers: {
-        'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJyb2hpdF9ib2hyYUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiUm9oaXQiLCJsYXN0X25hbWUiOiJCb2hyYSIsInJvbGVfbmFtZSI6ImFkbWluIiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTczODQzNzA5MCwiZXhwIjoxNzM4NTIzNDkwfQ.DPO28heNqVnkEO6p-3UJ6B2ldqYlYpS6qOYkRSQhlkU'
-      }
+      withCredentials: true,
     };
 
     const response = await axios(config);
     // console.log("response from apiHandler: ", response);
+
+    if(response.data.status === 401){
+      console.log("Unauthorized");
+      localStorage.removeItem('name');
+      window.location.href = '/';
+    }
     return {
       status: response.data?.status,
       message: response.data?.message,
@@ -24,11 +28,16 @@ export const callAPI = async (URL, method = 'POST', body = null, params = null) 
       error: response.data.error
     };
   } catch (error) {
-    console.error(error);
+    console.error("Error",error);
+    if(error.response.data.status === 401){
+      console.log("Unauthorized");
+      localStorage.removeItem('name');
+      window.location.href = '/';
+    }
     return {
-      status: error.data?.status || null,
-      message: error.data?.message || null,
-      data: error.data?.data ? error.data.data : null,
+      status: error.response.data?.status || null,
+      message: error.response.data?.message || null,
+      data: error.response.data?.data ? error.response.data.data : null,
       error: true
     };
   }
