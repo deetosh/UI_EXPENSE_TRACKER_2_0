@@ -233,12 +233,14 @@ import React, { useState } from "react";
 
 import './table.css';
 import DButton from "./DButton";
+// import { ReactComponent as NoDataImage } from '/icons/no-data.svg';
 
 const DTable = ({ headers, data, onDelete, onEdit }) => {
-  if(!data || data.length === 0) {
+  if (!data || data.length === 0) {
     return (
-      <div className="recent-transactions card">
-        <h3>No expenses available</h3>
+      <div className="no-data-container ">
+        <img src="/icons/no-data.svg" alt="No Data" className="no-data-image" />
+        <h3 className="no-data-text">No expenses available</h3>
       </div>
     );
   }
