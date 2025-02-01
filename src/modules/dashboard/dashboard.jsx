@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ExpenseCard from '../expenses/ExpenseCard';
 import Graph from '../graph/Graph';
+import { callAPI } from '../../services/ApiHelper';
 
 function Dashboard() {
     // Sample expense data with id and spent
@@ -15,45 +16,61 @@ function Dashboard() {
         { id: 8, spent: 480 }
     ];
 
+    const [graphType, setGraphType] = useState('daily');
+    const [graphData, setGraphData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
     // Calculate the total spent by summing up the 'spent' field from all expenses
     const totalSpent = expensesData.reduce((total, expense) => total + expense.spent, 0);
+
+    const fetchGraphData = async () => {
+
+        const response = await callAPI('/expenses/daily', 'GET', {}, { type: graphType });
+        if (response.data && response.data.length > 0) {
+            setGraphData(response.data);
+        }
+    }
+
+    useEffect(() => {
+        fetchGraphData();
+    }, [graphType]);
 
     return (
         <>
             <div
-            style={{
-                display: "flex",
-                flexDirection: "row",
-                height: "40%",
-                width: "100%",
-                padding: "10px",
-                justifyContent: "center",
-                alignItems: "center",
-                overflow:"scroll",
-                gap: "20px",
-            }
-            }>
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    height: "40%",
+                    width: "100%",
+                    padding: "10px",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    overflow: "scroll",
+                    gap: "20px",
+                }
+                }>
                 <div style={{
                     width: "50%",
                     height: "100%",
                     padding: "20px",
                     boxSizing: "border-box",
-                    overflow:"scroll",
+                    overflow: "scroll",
                     boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.22)",
-                }}>
-                    <Graph />
+                }}> 
+                    {/* <Graph /> */}
                 </div>
                 <div style={{
-                        width: "50%",
-                        height: "100%",
-                        padding: "20px",
-                        boxSizing: "border-box",
-                        boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.22)",
-                    }}
-                > 
+                    width: "50%",
+                    height: "100%",
+                    padding: "20px",
+                    boxSizing: "border-box",
+                    boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.22)",
+                }}
+                >
                 </div>
 
-                
+
             </div>
             <div
                 style={{
