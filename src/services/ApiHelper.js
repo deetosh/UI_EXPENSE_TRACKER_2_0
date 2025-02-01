@@ -16,17 +16,20 @@ export const callAPI = async (URL, method = 'POST', body = null, params = null) 
     };
 
     const response = await axios(config);
+    // console.log("response from apiHandler: ", response);
     return {
       status: response.data?.status,
       message: response.data?.message,
       data: response.data?.data ? response.data.data : null,
+      error: response.data.error
     };
   } catch (error) {
     console.error(error);
     return {
-      status: error.status || null,
-      message: error.message || null,
-      data: error.response || null
+      status: error.data?.status || null,
+      message: error.data?.message || null,
+      data: error.data?.data ? error.data.data : null,
+      error: true
     };
   }
 };

@@ -38,13 +38,14 @@ const Login = ({ className, onBackClick }) => {
     }
 
     const response = await callAPI('/signin', 'POST', { email:email, password:password });
+    console.log("response",response);
     if(!response.error){
       localStorage.setItem('name', response.data.firstName); // Example: Store token
       window.location.href = '/app';
       setErrors('');
     }
     else{
-      setErrors(response.error);
+      setErrors('Invalid email or password');
     }
 
   };
