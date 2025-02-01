@@ -1,12 +1,17 @@
 .budget-card {
     background-color: #ffffff;
     border-radius: 12px;
-    overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     width: 200px;
     height: 210px;
+    flex: 0 0 auto;
+    /* Prevent shrinking/growing */
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+    /* Remove huge margin */
 }
 
 .image-container {
@@ -58,15 +63,15 @@
 }
 
 .progress-fill {
+    background-color: rgb(73, 57, 113);
     height: 100%;
-    background-color: #007bff;
-    border-radius: 4px;
     transition: width 0.3s ease;
-}
-
-.progress-fill.over-budget {
-    background-color: #dc3545;
-}
+  }
+  
+  .progress-fill.over-threshold {
+    background-color: red;
+  }
+  
 
 /* Optional hover effect */
 .budget-card:hover .category-image {

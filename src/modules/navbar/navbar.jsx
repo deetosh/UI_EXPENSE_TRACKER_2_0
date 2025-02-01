@@ -1,4 +1,4 @@
-import React ,{useState,useEffect} from 'react';
+ import React ,{useState,useEffect} from 'react';
 import './navbar.css';
 import DButton from '../../atoms/DButton';
 import { Link,NavLink } from 'react-router-dom';
