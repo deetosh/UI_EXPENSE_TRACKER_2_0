@@ -10,9 +10,9 @@ export const callAPI = async (URL, method = 'POST',body=null, params = null) => 
         method: method,  
         data: method !== 'GET' ? body : undefined, 
         params:  params || undefined,
-        headers:{
-          'authorization':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJyb2hpdF9ib2hyYUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiUm9oaXQiLCJsYXN0X25hbWUiOiJCb2hyYSIsInJvbGVfbmFtZSI6ImFkbWluIiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTczODM0NjA4NywiZXhwIjoxNzM4NDMyNDg3fQ.hj1PzvTsgBjut3kECLVyUr6mekWo-a0P1aJJXpYfHfg'
-        }
+        // headers:{
+        //   'authorization':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJyb2hpdF9ib2hyYUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiUm9oaXQiLCJsYXN0X25hbWUiOiJCb2hyYSIsInJvbGVfbmFtZSI6ImFkbWluIiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTczODM0NjA4NywiZXhwIjoxNzM4NDMyNDg3fQ.hj1PzvTsgBjut3kECLVyUr6mekWo-a0P1aJJXpYfHfg'
+        // }
       };
   
       const response = await axios(config);

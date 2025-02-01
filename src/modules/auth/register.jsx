@@ -4,7 +4,8 @@ import { callAPI } from '../../services/ApiHelper';
 
 const Register = ({ className, onLoginClick }) => {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -25,9 +26,14 @@ const Register = ({ className, onLoginClick }) => {
     e.preventDefault();
     let validationErrors = {};
 
-    // ✅ Validate Name
-    if (!formData.name.trim()) {
-      validationErrors.name = "Name is required";
+    // ✅ Validate First Name
+    if (!formData.firstName.trim()) {
+      validationErrors.firstName = "First Name is required";
+    }
+
+    // ✅ Validate Last Name
+    if (!formData.lastName.trim()) {
+      validationErrors.lastName = "Last Name is required";
     }
 
     // ✅ Validate Email
@@ -59,9 +65,12 @@ const Register = ({ className, onLoginClick }) => {
 
     // ✅ Prepare object for API call
     const userData = {
-      firstName: formData.name,
+      first_name: formData.firstName,
+      last_name: formData.lastName,
       email: formData.email,
       password: formData.password,
+      confirm_password:formData.confirmPassword,
+      role_name:"user",
     };
 
     // ✅ Call the API
@@ -71,7 +80,7 @@ const Register = ({ className, onLoginClick }) => {
 
     if (response.status === 200) {
       alert('Registration Successful! 🎉');
-      setFormData({ name: '', email: '', password: '', confirmPassword: '' }); // Reset form
+      setFormData({ firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }); // Reset form
     } else {
       alert(response.message || 'Something went wrong!');
     }
@@ -81,17 +90,29 @@ const Register = ({ className, onLoginClick }) => {
     <form className={`signUp ${className}`} onSubmit={handleSubmit}>
       <h3>Create Your Account</h3>
 
-      {/* ✅ Name Input */}
+      {/* ✅ First Name Input */}
       <input
         className="w100"
         type="text"
-        name="name"
-        placeholder="Name"
+        name="firstName"
+        placeholder="First Name"
         autoComplete="off"
-        value={formData.name}
+        value={formData.firstName}
         onChange={handleChange}
       />
-      {errors.name && <p className="error">{errors.name}</p>}
+      {errors.firstName && <p className="error">{errors.firstName}</p>}
+
+      {/* ✅ Last Name Input */}
+      <input
+        className="w100"
+        type="text"
+        name="lastName"
+        placeholder="Last Name"
+        autoComplete="off"
+        value={formData.lastName}
+        onChange={handleChange}
+      />
+      {errors.lastName && <p className="error">{errors.lastName}</p>}
 
       {/* ✅ Email Input */}
       <input
