@@ -180,3 +180,20 @@
     transform: translateY(5px);
     transition: 200ms;
 }
+
+::-webkit-scrollbar {
+    display: none;
+    width: 5px; /* Adjust width as needed */
+    height: 5px; /* For horizontal scrollbar */
+  }
+  
+  ::-webkit-scrollbar-track {
+    display: none;
+    background: transparent; /* Makes the track invisible */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    display: none;
+    background: rgb(192, 186, 186); /* Customize the thumb color */
+    border-radius: 10px; /* Optional: makes the thumb rounded */
+  }
