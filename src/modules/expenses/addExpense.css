@@ -80,7 +80,7 @@
 }
 
 /* Button styling with percentage paddings */
-.button-primary {
+/* .button-primary {
   background: #6a0dad;
   color: #fff;
   padding: 1% 2%;
@@ -93,7 +93,7 @@
 
 .button-primary:hover {
   background: #5a0cad;
-}
+} */
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 600px) {

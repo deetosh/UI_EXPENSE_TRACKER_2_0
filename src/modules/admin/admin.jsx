@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./admin.css";
 import { SearchBar } from "../searchbox/SearchBar";
 import { SearchResultsList } from "../searchbox/SearchResultsList";
+import DDialogbox from "../../molecules/DDialogbox";
 
 function Admin() {
     const [results, setResults] = useState([]);
