@@ -33,6 +33,11 @@
 
     --loader-color: #000000;
     --loader-bg: #968c8c28;
+
+    --dropdown-name-bg:  rgb(73, 57, 113);
+    --dropdown-name: white;
+    --dropdown-menu-bg: rgba(226, 214, 216, 0.661);
+    --dropdown-menu-hover: rgba(255, 255, 255, 0.901);
 }
 
 [data-theme="dark"] {
@@ -68,6 +73,11 @@
     --dialog-bg:rgba(255, 255, 255, 0.103);
 
     --loader-color: #ffffff;
+
+    --dropdown-name-bg:  rgb(179, 169, 202);
+    --dropdown-name: black;
+    --dropdown-menu-bg: rgba(226, 214, 216, 0.897);
+    --dropdown-menu-hover: rgba(185, 159, 202, 0.853);
 }
 
 
