@@ -12,6 +12,7 @@ const AuthPage = () => {
         <Register
           className={isLoginActive ? 'inactive-sx' : 'active-sx'}
           onLoginClick={() => setIsLoginActive(true)}
+          onSuccess={() => setIsLoginActive(true)}
         />
         <Login
           className={isLoginActive ? 'active-dx' : 'inactive-dx'}
