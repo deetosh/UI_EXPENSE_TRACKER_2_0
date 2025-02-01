@@ -18,14 +18,14 @@ export const callAPI = async (URL, method = 'POST',body=null, params = null) => 
       const response = await axios(config);
       return {
         status: response.data?.status,
-        message: response.data?.message,
+        message: response.data?.message || "Success",
         data: response.data?.data ? response.data.data : null,
       };
     } catch (error) {
       console.error(error);
       return {
-        status: error.status || null,
-        message: error.message || null,
+        status: error.status || 500,
+        message: error.message || "An Error Occured",
         data: error.response || null
       };
     }

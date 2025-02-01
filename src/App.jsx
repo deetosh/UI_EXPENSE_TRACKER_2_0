@@ -5,7 +5,6 @@ import './App.css'
 import DButton from './atoms/DButton'
 import { callAPI } from './services/ApiHelper'
 import AuthPage from './modules/auth/authPage'
-import TableExample from './atoms/testable'
 import Navbar from './modules/navbar/navbar'
 import { Outlet } from 'react-router-dom'
 
@@ -31,27 +30,7 @@ function App() {
 
   return (
     <>
-      <div style={{
-        backgroundColor: "var(--bg-primary)",
-        minHeight: "100vh",
-        minWidth:"100vw",
-        display: "flex",
-      }}>
-
-        <div style={{
-          zIndex: 100,
-        }}>
-          <Navbar tabs={tabs}/>
-        </div>
-
-        <div style={{
-          flexGrow:1
-        }}>
-          <Outlet/>
-        </div>
-      
-      
-      </div>
+      <AuthPage/>
     </>
   )
 }

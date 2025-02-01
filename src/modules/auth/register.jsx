@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './auth.css';
+import { callAPI } from '../../services/ApiHelper';
 
 const Register = ({ className, onLoginClick }) => {
   const [formData, setFormData] = useState({
@@ -10,8 +11,9 @@ const Register = ({ className, onLoginClick }) => {
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); // Prevent multiple submissions
 
-  //  Email validation regex
+  // ✅ Email validation regex
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleChange = (e) => {
@@ -19,51 +21,67 @@ const Register = ({ className, onLoginClick }) => {
     setErrors({ ...errors, [e.target.name]: '' }); // Clear errors when typing
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let validationErrors = {};
 
-    // Validate Name
+    // ✅ Validate Name
     if (!formData.name.trim()) {
       validationErrors.name = "Name is required";
     }
 
-    // Validate Email
+    // ✅ Validate Email
     if (!formData.email.trim()) {
       validationErrors.email = "Email is required";
     } else if (!isValidEmail(formData.email)) {
       validationErrors.email = "Invalid email format";
     }
 
-    // Validate Password
+    // ✅ Validate Password
     if (!formData.password.trim()) {
       validationErrors.password = "Password is required";
     } else if (formData.password.length < 6) {
       validationErrors.password = "Password must be at least 6 characters";
     }
 
-    // Validate Confirm Password
+    // ✅ Validate Confirm Password
     if (!formData.confirmPassword.trim()) {
       validationErrors.confirmPassword = "Please confirm your password";
     } else if (formData.password !== formData.confirmPassword) {
       validationErrors.confirmPassword = "Passwords do not match";
     }
 
-    // If there are errors, prevent submission
+    // ✅ If there are errors, prevent submission
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
 
-    // If all validations pass, proceed with submission
-    alert('Registration Successful! 🎉');
+    // ✅ Prepare object for API call
+    const userData = {
+      firstName: formData.name,
+      email: formData.email,
+      password: formData.password,
+    };
+
+    // ✅ Call the API
+    setLoading(true);
+    const response = await callAPI('/signup', 'POST', userData);
+    setLoading(false);
+
+    if (response.status === 200) {
+      alert('Registration Successful! 🎉');
+      setFormData({ name: '', email: '', password: '', confirmPassword: '' }); // Reset form
+    } else {
+      alert(response.message || 'Something went wrong!');
+    }
   };
 
   return (
     <form className={`signUp ${className}`} onSubmit={handleSubmit}>
       <h3>Create Your Account</h3>
 
-      {/* Name Input */}
+      {/* ✅ Name Input */}
       <input
         className="w100"
         type="text"
@@ -75,7 +93,7 @@ const Register = ({ className, onLoginClick }) => {
       />
       {errors.name && <p className="error">{errors.name}</p>}
 
-      {/* Email Input */}
+      {/* ✅ Email Input */}
       <input
         className="w100"
         type="email"
@@ -87,7 +105,7 @@ const Register = ({ className, onLoginClick }) => {
       />
       {errors.email && <p className="error">{errors.email}</p>}
 
-      {/* Password Input */}
+      {/* ✅ Password Input */}
       <input
         type="password"
         name="password"
@@ -97,7 +115,7 @@ const Register = ({ className, onLoginClick }) => {
       />
       {errors.password && <p className="error">{errors.password}</p>}
 
-      {/* Confirm Password Input */}
+      {/* ✅ Confirm Password Input */}
       <input
         type="password"
         name="confirmPassword"
@@ -110,7 +128,9 @@ const Register = ({ className, onLoginClick }) => {
       <button className="form-btn sx log-in" type="button" onClick={onLoginClick}>
         Log In
       </button>
-      <button className="form-btn dx" type="submit">Sign Up</button>
+      <button className="form-btn dx" type="submit" disabled={loading}>
+        {loading ? 'Signing Up...' : 'Sign Up'}
+      </button>
     </form>
   );
 };
