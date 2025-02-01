@@ -1,39 +1,52 @@
 import React, { useState } from 'react';
 import './auth.css';
+import { callAPI } from '../../services/ApiHelper'
 
 const Login = ({ className, onBackClick }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState('');
 
   // Email validation regex
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let validationErrors = {};
+    // let validationErrors = {};
+    setErrors('');
 
     // Check if email is valid
     if (!email.trim()) {
-      validationErrors.email = "Email is required";
+      // validationErrors.email = "Email is required";
+      setErrors('Email is required');
+      return;
     } else if (!isValidEmail(email)) {
-      validationErrors.email = "Invalid email format";
+      // validationErrors.email = "Invalid email format";
+      setErrors('Invalid email format');
+      return;
     }
 
     // Check if password meets length requirement
     if (!password.trim()) {
-      validationErrors.password = "Password is required";
+      // validationErrors.password = "Password is required";
+      setErrors('Password is required');
+      return;
     } else if (password.length < 6) {
-      validationErrors.password = "Password must be at least 6 characters";
-    }
-
-    // If errors exist, update state and prevent submission
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+      // validationErrors.password = "Password must be at least 6 characters";
+      setErrors('Password must be at least 6 characters');
       return;
     }
 
-    // If no errors, proceed with login 
+    const response = await callAPI('/signin', 'POST', { email:email, password:password });
+    if(!response.error){
+      localStorage.setItem('name', response.data.firstName); // Example: Store token
+      window.location.href = '/app';
+      setErrors('');
+    }
+    else{
+      setErrors(response.error);
+    }
+
   };
 
   return (
@@ -53,7 +66,7 @@ const Login = ({ className, onBackClick }) => {
         value={email} 
         onChange={(e) => setEmail(e.target.value)} 
       />
-      {errors.email && <p className="error">{errors.email}</p>}
+      
 
       {/* Password Input */}
       <input 
@@ -62,7 +75,7 @@ const Login = ({ className, onBackClick }) => {
         value={password} 
         onChange={(e) => setPassword(e.target.value)} 
       />
-      {errors.password && <p className="error">{errors.password}</p>}
+      {errors && <p className="error">{errors}</p>}
 
       <button className="form-btn sx back" type="button" onClick={onBackClick}>Back</button>
       <button className="form-btn dx" type="submit">Log In</button>

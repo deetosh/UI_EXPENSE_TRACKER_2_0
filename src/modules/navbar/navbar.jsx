@@ -2,6 +2,7 @@
 import './navbar.css';
 import DButton from '../../atoms/DButton';
 import { Link,NavLink } from 'react-router-dom';
+import { callAPI } from '../../services/ApiHelper'
 
 const icon_map = {
     1:"/icons/dashboard.svg",
@@ -18,6 +19,12 @@ const icon_map_dark = {
     3:"/icons/admin-white.svg",
     2:"/icons/expenses-white.svg",
     1:"/icons/dashboard-white.svg",
+}
+
+const signOut = async () => {
+    localStorage.removeItem('name');
+    const response = await callAPI('/signout', 'POST');
+    if(!response.error) window.location.href = '/';
 }
 
 function Navbar({ tabs }) {
@@ -72,7 +79,7 @@ function Navbar({ tabs }) {
                 />
                 <DButton
                     text = "Sign Out"
-                    onClick={()=>{}}
+                    onClick={signOut}
                     buttonClass='button-nav-primary'
                 />
             </div>
