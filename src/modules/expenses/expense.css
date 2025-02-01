@@ -55,7 +55,7 @@
     margin-top: 15px;
   }
   
-  .button-primary {
+  /* .button-primary {
     background: #6a0dad;
     color: #fff;
     padding: 12px 20px;
@@ -68,7 +68,7 @@
   
   .button-primary:hover {
     background: #5a0cad;
-  }
+  } */
   
   @media (max-width: 600px) {
     .input-group-row {
