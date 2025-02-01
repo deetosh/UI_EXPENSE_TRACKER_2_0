@@ -35,6 +35,7 @@ function App() {
         minHeight: "100vh",
         minWidth:"100vw",
         display: "flex",
+        overflow: "hidden",
       }}>
 
         <div style={{
@@ -44,7 +45,12 @@ function App() {
         </div>
 
         <div style={{
-          flexGrow:1
+          flexGrow:1,
+          padding:"20px",
+          overflowY:"hidden",
+          height:"100vh",
+          display:"flex",
+          flexDirection:"column",
         }}>
           <Outlet/>
         </div>

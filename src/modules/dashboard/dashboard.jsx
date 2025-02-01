@@ -26,18 +26,43 @@ function Dashboard() {
                 flexDirection: "row",
                 height: "40%",
                 width: "100%",
+                padding: "10px",
+                justifyContent: "center",
+                alignItems: "center",
+                overflow:"scroll",
+                gap: "20px",
             }
             }>
-                <Graph />
+                <div style={{
+                    width: "50%",
+                    height: "100%",
+                    padding: "20px",
+                    boxSizing: "border-box",
+                    overflow:"scroll",
+                    boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.22)",
+                }}>
+                    <Graph />
+                </div>
+                <div style={{
+                        width: "50%",
+                        height: "100%",
+                        padding: "20px",
+                        boxSizing: "border-box",
+                        boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.22)",
+                    }}
+                > 
+                </div>
+
+                
             </div>
             <div
                 style={{
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    height: "100%",
+                    height: "60%",
                     width: "100%",
-                    padding: "20px",
+                    padding: "10px",
                     boxSizing: "border-box"
                 }}
             >
@@ -67,7 +92,8 @@ function Dashboard() {
                         overflowY: "auto",
                         padding: "20px",
                         height: "60vh",
-                        boxSizing: "border-box"
+                        boxSizing: "border-box",
+                        boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.22)",
                     }}
                 >
                     {expensesData.map(expense => (
