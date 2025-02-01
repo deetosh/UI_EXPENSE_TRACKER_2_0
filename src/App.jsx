@@ -5,7 +5,6 @@ import './App.css'
 import DButton from './atoms/DButton'
 import { callAPI } from './services/ApiHelper'
 import AuthPage from './modules/auth/authPage'
-import TableExample from './atoms/testable'
 import Navbar from './modules/navbar/navbar'
 import { Outlet } from 'react-router-dom'
 

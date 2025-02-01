@@ -5,17 +5,42 @@ import { useEffect, useState } from 'react';
 import Modal from '../../molecules/Modal';
 import ExpenseForm from './addExpense';
 import DButton from '../../atoms/DButton';
+import DTable from '../../atoms/table';
+import Loader from '../../molecules/Loader';
 
-const columns=["amount","date","description","category","payment_method","Delete","Edit"];
+const columns=[
+    {
+        label:"Date",
+        key:"date"
+    },
+    {
+        label:"Amount",
+        key:"amount"
+    },
+    {
+        label:"Description",
+        key:"description"
+    },
+    {
+        label:"Category",
+        key:"category"
+    },
+    {
+        label:"Payment Mode",
+        key:"payment_mode"
+    }
+];
 function Expenses() {
     const [data, setData] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchData = async () => {
+        setIsLoading(true);
         const response = await callAPI("/expenses", "GET");
         setData(response.data);
         console.log(response.data);
-        
+        setIsLoading(false);
     }
 
     useEffect(() => {  
@@ -24,6 +49,7 @@ function Expenses() {
 
     async function handleSubmit(expense){
         // console.log(expense);
+        setIsLoading(true);
         const response = await callAPI("/expenses/add","POST",expense);
         fetchData();
         setIsModalOpen(false);
@@ -35,21 +61,45 @@ function Expenses() {
         // }
         // );
         console.log(response);
+        setIsLoading(false);
+    }
+
+    const deleteExpense = async (id) => {
+        setIsLoading(true);
+        const response = await callAPI(`/expenses/delete`, "DELETE",{},{expense_id:id});
+        fetchData();
+        setIsLoading(false);
+    }
+
+    if(isLoading){
+        return <Loader/>
     }
 
     return (
         <>
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            // justifyContent:"center",
+            alignItems: "center",
+            height: "100%",
+            width: "100%",
+            padding: "20px"
+        }}>
+
+        
         <h1>Expenses</h1>
         <DButton
             text={"Add Expense"}
             onClick={()=>setIsModalOpen(!isModalOpen)}
             buttonClass={"button-primary"}
         />
-        <DynamicTable 
-            columns={columns}
-            data={data}    
-        />  
-
+        <DTable
+            headers={columns}
+            data={data}
+            onDelete={deleteExpense}
+        />
+        </div>
         <Modal 
             openModal={isModalOpen}
             setOpenModal={setIsModalOpen}
