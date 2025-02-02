@@ -50,11 +50,24 @@ const Login = ({ className, onBackClick }) => {
 
   };
 
+  const handleGoogleSignIn = async () => {
+    window.location.href = "http://localhost:8000/api/v1/auth/google";  
+    // const response = await callAPI('/auth/google', 'GET');
+    // if(!response.error){
+    //   localStorage.setItem('name', response.data.firstName); // Example: Store token
+    //   window.location.href = '/app';
+    //   setErrors('');
+    // }
+    // else{
+    //   setErrors('Invalid email or password');
+    // }
+  }
+
   return (
     <form className={`signIn ${className}`} onSubmit={handleSubmit}>
       <h3>Welcome<br />Back !</h3>
       
-      <button type="button" className="login-with-google-btn" >
+      <button type="button" className="login-with-google-btn" onClick={handleGoogleSignIn}>
         Sign in with Google
       </button>
       <p className={`or_hi`}>- or -</p>
