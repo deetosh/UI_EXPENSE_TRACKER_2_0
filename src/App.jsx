@@ -30,7 +30,7 @@ function App() {
           onClick={() => setIsDarkMode(!isDarkMode)}
         />
       </div> */}
-      <AuthPage/>
+      <TableExample/>
     </>
   )
 }
