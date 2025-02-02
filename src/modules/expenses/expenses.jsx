@@ -35,10 +35,11 @@ function Expenses() {
     const [data, setData] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
 
     const fetchData = async () => {
         setIsLoading(true);
-        const response = await callAPI("/expenses", "GET");
+        const response = await callAPI("/expenses", "POST");
         setData(response.data);
         console.log(response.data);
         setIsLoading(false);
@@ -62,6 +63,14 @@ function Expenses() {
         // }
         // );
         console.log(response);
+        setIsLoading(false);
+    }
+
+    async function handleFilter(filter){
+        setIsLoading(true);
+        const response = await callAPI("/expenses","POST",filter);
+        setData(response.data);
+        setIsFilterOpen(false);
         setIsLoading(false);
     }
 
@@ -89,12 +98,24 @@ function Expenses() {
         }}>
 
         
-        <h1>Expenses</h1>
-        <DButton
-            text={"Add Expense"}
-            onClick={()=>setIsModalOpen(!isModalOpen)}
-            buttonClass={"button-primary"}
-        />
+        {/* <h1>Expenses</h1> */}
+        <div style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "100px",
+        }}>
+            <DButton
+                text={"Add Expense"}
+                onClick={()=>setIsModalOpen(!isModalOpen)}
+                buttonClass={"button-primary"}
+            />
+            <DButton
+                text={"Filter"}
+                onClick={()=>setIsFilterOpen(!isFilterOpen)}
+                buttonClass={"button-primary"}
+            />
+        </div>
+        
         <DTable
             headers={columns}
             data={data}
@@ -109,7 +130,16 @@ function Expenses() {
             modalName={"Add Expense"}
         > 
            <ExpenseForm onAddExpense={handleSubmit}/> 
-        </Modal>     
+        </Modal> 
+        <Modal
+            openModal={isFilterOpen}
+            setOpenModal={setIsFilterOpen}
+            height={"60vh"}
+            width={"30vw"}
+            modalName={"Filter Expenses"}
+        >
+            <FilterForm onAddFilter={handleFilter}/>
+        </Modal>    
         </>
     )
 }

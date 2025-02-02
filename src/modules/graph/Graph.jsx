@@ -167,21 +167,35 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContai
 //   { name: 'May', value: 189 },
 // ];
 
-const MyLineChart = ({dataObjects}) => (
+const MyLineChart = ({dataObjects}) => {
+  let max = 0;
+  // find max amount in dataObjects
+  dataObjects.forEach((item) => {
+    if(item.amount > max) {
+      max = Number(item.amount);
+    }
+  });
+  console.log(max);
+  
+  return (
   <ResponsiveContainer width="100%" height="100%">
-  <LineChart width={500} height={300} data={dataObjects} margin={{
+  <LineChart width="100%" height="100%" data={dataObjects} margin={{
             top: 5,
             right: 5,
             left: 5,
             bottom: 5,
           }}>
-    <XAxis dataKey="date" />
-    <YAxis dataKey="amount"/>
+    <XAxis dataKey="date" 
+      domain={['dataMin', 'dataMax']}
+    />
+    <YAxis dataKey="amount"
+      domain={[0, max]}
+    />
     <Tooltip />
     <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
     <Line type="monotone" dataKey="amount" stroke="#493971" strokeWidth={3} dot={{r:5}} activeDot={{ r: 10 }}/>
   </LineChart>
   </ResponsiveContainer>
-);
+);}
 
 export default MyLineChart;
