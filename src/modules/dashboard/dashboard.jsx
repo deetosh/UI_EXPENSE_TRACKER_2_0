@@ -5,6 +5,7 @@ import MyPieChart from '../graph/Chart';
 import { callAPI } from '../../services/ApiHelper';
 import DDropdown from '../../atoms/DDropdown';
 import DButton from '../../atoms/DButton';
+import Loader from '../../molecules/Loader';
 
 function Dashboard() {
     // Sample expense data with id and spent
@@ -59,6 +60,7 @@ function Dashboard() {
     const [graphType, setGraphType] = useState('Present Week');
     const [graphData, setGraphData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [categoryData, setCategoryData] = useState({});
 
     // Calculate the total spent by summing up the 'spent' field from all expenses
     const totalSpent = expensesData.reduce((total, expense) => total + expense.spent, 0);
@@ -77,9 +79,11 @@ function Dashboard() {
         setIsLoading(true);
         let graph_type = graphType === 'Present Week' ? 'weekly' : 'monthly';
         const response = await callAPI('/expenses/category', 'GET', {},{duration:graph_type});
-        if (response.data && response.data.length > 0) {
-            setGraphData(response.data);
+        if (response.data) {
+            console.log('response',response.data);
+            setCategoryData(response.data);
         }
+        // console.log('category',categoryData);
         setIsLoading(false);
     }
 
@@ -92,6 +96,10 @@ function Dashboard() {
 
     const handleBudgetChange = (newBudget) => {
         setShowInput(false);
+    }
+
+    if(isLoading){
+        return <Loader/>
     }
 
     return (
@@ -194,12 +202,12 @@ function Dashboard() {
                             borderRadius: "20px",
                         }}
                     >
-                        {expensesData.map(expense => (
+                        {categoryData?.expenses?.length && categoryData.expenses.map(expense => (
                             <ExpenseCard
-                                key={expense.id}
-                                id={expense.id}
-                                spent={expense.spent}
-                                percentage={(expense.spent / totalSpent) * 100}
+                                key={expense.category}
+                                id={expense.category}
+                                spent={expense.amount}
+                                percentage={(expense.amount / categoryData.total_amount) * 100}
                             />
                         ))}
                     </div>
