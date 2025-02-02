@@ -8,49 +8,8 @@ import DButton from '../../atoms/DButton';
 import Loader from '../../molecules/Loader';
 
 function Dashboard() {
-    // Sample expense data with id and spent
-    const expensesData = [
-        { id: 1, spent: 1400 },
-        { id: 2, spent: 960 },
-        { id: 3, spent: 2400 },
-        { id: 4, spent: 1200 },
-        { id: 5, spent: 500 },
-        { id: 6, spent: 4000 },
-        { id: 7, spent: 4800 },
-        { id: 8, spent: 480 }
-    ];
 
-    const data = [
-        {
-            date: "2021-09-01",
-            amount: 100,
-        },
-        {
-            date: "2021-09-02",
-            amount: 200,
-        },
-        {
-            date: "2021-09-03",
-            amount: 100,
-        },
-        {
-            date: "2021-09-04",
-            amount: 200,
-        },
-        {
-            date: "2021-09-05",
-            amount: 300,
-        },
-        {
-            date: "2021-09-06",
-            amount: 400,
-        },
-        {
-            date: "2021-09-07",
-            amount: 500,
-        }
-    ];
-
+    
 
     const piedata = [
         { name: 'Used', value: 400 },
@@ -61,9 +20,11 @@ function Dashboard() {
     const [graphData, setGraphData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [categoryData, setCategoryData] = useState({});
+    const [totalExpense,setTotalExpense] = useState(0);
+    const [totalBudget,setTotalBudget] = useState(0);
 
     // Calculate the total spent by summing up the 'spent' field from all expenses
-    const totalSpent = expensesData.reduce((total, expense) => total + expense.spent, 0);
+    // const totalSpent = expensesData.reduce((total, expense) => total + expense.spent, 0);
 
     const fetchGraphData = async () => {
         setIsLoading(true);
@@ -80,8 +41,11 @@ function Dashboard() {
         let graph_type = graphType === 'Present Week' ? 'weekly' : 'monthly';
         const response = await callAPI('/expenses/category', 'GET', {},{duration:graph_type});
         if (response.data) {
-            console.log('response',response.data);
+            // console.log('response',response.data);
             setCategoryData(response.data);
+            setTotalExpense(response.data.total_amount);
+            setTotalBudget(response.data.total_budget);
+            console.log("###",response);
         }
         // console.log('category',categoryData);
         setIsLoading(false);
@@ -154,9 +118,9 @@ function Dashboard() {
                     borderRadius: "20px",
                 }}
                 >
-                    <MyPieChart
+                    {/* <MyPieChart
                         dataObjects={piedata}
-                    />
+                    /> */}
                 </div>
 
 
