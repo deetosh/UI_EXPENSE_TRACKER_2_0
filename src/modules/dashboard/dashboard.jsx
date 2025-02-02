@@ -207,7 +207,7 @@ function Dashboard() {
                                 key={expense.category}
                                 id={expense.category}
                                 spent={expense.amount}
-                                percentage={(expense.amount / categoryData.total_amount) * 100}
+                                percentage={(expense.amount / (categoryData.total_amount ? categoryData.total_amount : 1)) * 100}
                             />
                         ))}
                     </div>
