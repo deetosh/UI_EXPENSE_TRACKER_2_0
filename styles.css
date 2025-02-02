@@ -38,6 +38,8 @@
     --dropdown-name: white;
     --dropdown-menu-bg: rgba(226, 214, 216, 0.661);
     --dropdown-menu-hover: rgba(255, 255, 255, 0.901);
+
+    --textbox-border:#8884d8;
 }
 
 [data-theme="dark"] {
@@ -78,6 +80,8 @@
     --dropdown-name: black;
     --dropdown-menu-bg: rgba(226, 214, 216, 0.897);
     --dropdown-menu-hover: rgba(185, 159, 202, 0.853);
+
+    --textbox-border:#8884d8;
 }
 
 
@@ -206,4 +210,20 @@
     display: none;
     background: rgb(192, 186, 186); /* Customize the thumb color */
     border-radius: 10px; /* Optional: makes the thumb rounded */
+  }
+
+  .textbox{
+    /* padding: 10px; */
+    border-radius: 10px;
+    border: 2px solid var(--textbox-border);
+    background-color: var(--button-primary);
+    letter-spacing: 1.5px;
+    font-size: 15px bold;
+    color: var(--text-primary);
+    cursor: pointer;
+    
+  }
+
+  .textbox::-webkit-input-placeholder {
+    color: grey;
   }

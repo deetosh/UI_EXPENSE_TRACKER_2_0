@@ -4,6 +4,7 @@ import MyLineChart from '../graph/Graph';
 import MyPieChart from '../graph/Chart';
 import { callAPI } from '../../services/ApiHelper';
 import DDropdown from '../../atoms/DDropdown';
+import DButton from '../../atoms/DButton';
 
 function Dashboard() {
     // Sample expense data with id and spent
@@ -86,6 +87,12 @@ function Dashboard() {
         fetchGraphData();
         fetchCategoryData();
     }, [graphType]);
+
+    const [showInput, setShowInput] = useState(false);
+
+    const handleBudgetChange = (newBudget) => {
+        setShowInput(false);
+    }
 
     return (
         <>
@@ -208,11 +215,65 @@ function Dashboard() {
                     alignItems: "center",
                     backgroundColor: "white",
                     borderRadius: "20px",
+                    flexDirection: "column",
+                    gap: "5px",
                 }}
                 >
+                  <div style={{
+                    height: "10%",
+                    width: "100%",
+                    textAlign: "left",
+                    fontSize: "20px",
+                    paddingLeft: "10px",
+                    // paddingTop: "5px",
+                    fontWeight: "bold",
+                  }}>
+                  Budget v/s Expense
+                  </div>
+                  <div style={{
+                    // paddingTop: "5px",
+                    height: "70%",
+                    width: "100%",
+                    // padding: "10px",
+                  }}>
                     <MyPieChart
                         dataObjects={piedata}
+                        //piedata={used, remaining}
                     />
+                    </div>
+                    <div style={{
+                    height: "10%",
+                    width: "100%",
+                    // textAlign: "centre",
+                    // fontSize: "15px",
+                    paddingLeft: "10px",
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "10px",
+                    justifyContent: "center",
+                  }}>
+                  <input
+                    className='textbox'
+                    placeholder=" New Budget"
+                    onInput={()=>{
+                        var input = document.getElementsByTagName("input")[0];
+                        var val = input.value;
+                        val = val.replace(/^0+|[^\d]/g, '');
+                        input.value = val;
+                    }}
+                    onKeyDown={(event)=>{
+                        if(event.key === 'Enter'){
+                            handleBudgetChange(event.target.value);
+                        }
+                    }}
+                    style={{
+                        display: showInput ? 'block' : 'none',
+                    }}
+                  />
+                  <img src="../../../icons/edit.svg" onClick={()=>setShowInput(true)} style={{
+                    cursor: "pointer",
+                  }}></img>
+                  </div>
                 </div>
             </div>
         </>
