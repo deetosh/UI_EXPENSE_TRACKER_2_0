@@ -53,7 +53,7 @@ function Dashboard() {
 
     const piedata = [
         { name: 'Used', value: 400 },
-        { name: 'Remaining', value: 300 },
+        { name: 'Remaining', value: 400 },
     ];
 
     const [graphType, setGraphType] = useState('Present Week');

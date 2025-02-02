@@ -3,7 +3,14 @@ import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
 const COLORS = ["#8884d8", "#dbcedb"]
 
-const MyPieChart = ({ dataObjects }) => (
+const MyPieChart = ({ dataObjects }) => {
+  
+  var message="";
+  if(dataObjects[1].value<=0){
+    message="Entire Budget Spent";
+  }
+  
+  return (
         <ResponsiveContainer width="100%" height="100%">
         <PieChart width="90%" height="100%">
         <Pie
@@ -28,8 +35,12 @@ const MyPieChart = ({ dataObjects }) => (
         <text x="50%" y="77%" textAnchor="middle" dominantBaseline="central" fontSize={20} fill='grey' fontStyle="italic">
         of ₹{dataObjects[0].value+dataObjects[1].value}
         </text>
+        <text x="50%" y="90%" textAnchor="middle" dominantBaseline="central" fontSize={15} fill='red'>
+        {message}
+        </text>
         </PieChart>
         </ResponsiveContainer>
     );
+  }
 
 export default MyPieChart;
