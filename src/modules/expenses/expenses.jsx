@@ -7,6 +7,7 @@ import ExpenseForm from './addExpense';
 import DButton from '../../atoms/DButton';
 import DTable from '../../atoms/table';
 import Loader from '../../molecules/Loader';
+import FilterForm from './addFilter';
 
 const columns=[
     {

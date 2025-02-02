@@ -20,8 +20,10 @@ const ExpenseForm = ({ onAddExpense }) => {
 
   const validateForm = () => {
     const newErrors = {};
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const now = new Date();
+    const istOffset = 5.5*60*60*1000;
+    const today = new Date(now.getTime() + istOffset);
+    // today.setHours(0, 0, 0, 0);
 
     if (!amount || amount <= 0) {
       newErrors.amount = "Amount must be greater than 0";

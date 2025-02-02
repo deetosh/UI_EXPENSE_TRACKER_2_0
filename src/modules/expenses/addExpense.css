@@ -5,7 +5,7 @@
   padding: 2%;          /* Use percentage-based padding */
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   margin: auto;         /* Center horizontally (and vertically if container permits) */
   display: flex;
   flex-direction: column;
