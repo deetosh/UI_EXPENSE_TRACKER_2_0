@@ -3,34 +3,60 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import DButton from './atoms/DButton'
+import { callAPI } from './services/ApiHelper'
 import AuthPage from './modules/auth/authPage'
-import TableExample from './atoms/testable'
+import Navbar from './modules/navbar/navbar'
+import { Outlet } from 'react-router-dom'
+
+const tabs = [
+  { label: "Dashboard", icon: 1, link: "dashboard" },
+  { label: "Expenses", icon: 1, link: "expenses" },
+  { label: "Admin", icon: 1, link: "admin" },
+    
+];
 
 function App() {
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.body.setAttribute("data-theme", "dark");
-    } else {
-      document.body.removeAttribute("data-theme");
+  const signIn=async ()=>{
+    const email_="aashray_tandon@gmail.com";
+    const password_="Test@1234";
+    const user={
+      email:email_,
+      password:password_
     }
-  }, [isDarkMode]);
+    const response = await callAPI("/signin","POST",user);
+    console.log(response);
+  }
 
   return (
     <>
-      {/* <div style={{
+      <div style={{
         backgroundColor: "var(--bg-primary)",
         minHeight: "100vh",
         minWidth:"100vw",
+        display: "flex",
+        overflow: "hidden",
       }}>
-        <DButton
-          text="toggle theme"
-          onClick={() => setIsDarkMode(!isDarkMode)}
-        />
-      </div> */}
-      <TableExample/>
+
+        <div style={{
+          zIndex: 100,
+        }}>
+          <Navbar tabs={tabs}/>
+        </div>
+
+        <div style={{
+          flexGrow:1,
+          padding:"20px",
+          overflowY:"hidden",
+          height:"100vh",
+          display:"flex",
+          flexDirection:"column",
+        }}>
+          <Outlet/>
+        </div>
+      
+      
+      </div>
     </>
   )
 }

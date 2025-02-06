@@ -1,79 +1,117 @@
 import React, { useState } from 'react';
 import './auth.css';
+import { callAPI } from '../../services/ApiHelper'
 
-const Register = ({ className, onLoginClick }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
+const Register = ({ className, onLoginClick ,onSuccess}) => {
+  const [first_name, setFirst_name] = useState('');
+  const [last_name, setLast_name] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm_password, setconfirm_password] = useState('');
+  const [errors, setErrors] = useState('');
 
-  const [errors, setErrors] = useState({});
 
   //  Email validation regex
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: '' }); // Clear errors when typing
-  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let validationErrors = {};
+    setErrors('');
 
     // Validate Name
-    if (!formData.name.trim()) {
-      validationErrors.name = "Name is required";
+    if (!first_name.trim()) {
+      setErrors('First Name is required');
+      return;
+      // validationErrors.first_name = "First Name is required";
+    }
+    if (!last_name.trim()) {
+      setErrors('Last Name is required');
+      return;
+      // validationErrors.lst_name = "Last Name is required";
     }
 
     // Validate Email
-    if (!formData.email.trim()) {
-      validationErrors.email = "Email is required";
-    } else if (!isValidEmail(formData.email)) {
-      validationErrors.email = "Invalid email format";
+    if (!email.trim()) {
+      setErrors('Email is required');
+      return;
+      // validationErrors.email = "Email is required";
+    } 
+    else if (!isValidEmail(email)) {
+      setErrors('Invalid email format');
+      return;
+
+      // validationErrors.email = "Invalid email format";
     }
 
     // Validate Password
-    if (!formData.password.trim()) {
-      validationErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      validationErrors.password = "Password must be at least 6 characters";
+    if (!password.trim()) {
+      setErrors('Password is required');
+      return;
+      // validationErrors.password = "Password is required";
+    } 
+    else if (password.length < 6) {
+      setErrors('Password must be at least 6 characters');
+      return;
+      // validationErrors.password = "Password must be at least 6 characters";
     }
 
     // Validate Confirm Password
-    if (!formData.confirmPassword.trim()) {
-      validationErrors.confirmPassword = "Please confirm your password";
-    } else if (formData.password !== formData.confirmPassword) {
-      validationErrors.confirmPassword = "Passwords do not match";
-    }
-
-    // If there are errors, prevent submission
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+    if (!confirm_password.trim()) {
+      setErrors('Please confirm your password');
       return;
+      // validationErrors.confirmPassword = "Please confirm your password";
+    } 
+    else if (password !==confirm_password) {
+      setErrors('Passwords do not match');
+      return;
+      // validationErrors.confirmPassword = "Passwords do not match";
     }
 
+    const response = await callAPI('/signup', 'POST',{first_name:first_name, last_name:last_name, email:email, password:password, confirm_password:confirm_password,role_name:'user'});
+    console.log("response",response);
     // If all validations pass, proceed with submission
-    alert('Registration Successful! 🎉');
+    
+    if(!response.error){
+      onSuccess();
+      setErrors('');
+      setEmail('');
+      setPassword('');
+      setFirst_name('');
+      setLast_name('');
+      setconfirm_password('');
+    }
+    else{
+      setErrors(response.message);
+    }
   };
 
   return (
     <form className={`signUp ${className}`} onSubmit={handleSubmit}>
       <h3>Create Your Account</h3>
 
-      {/* Name Input */}
+      {/* Fisrt Name Input */}
       <input
         className="w100"
         type="text"
         name="name"
-        placeholder="Name"
+        placeholder="First Name"
         autoComplete="off"
-        value={formData.name}
-        onChange={handleChange}
+        value={first_name}
+        onChange={(e) => setFirst_name(e.target.value)}
       />
-      {errors.name && <p className="error">{errors.name}</p>}
+
+      {/* Last Name Input */}
+      <input
+        className="w100"
+        type="text"
+        name="name"
+        placeholder="Last Name"
+        autoComplete="off"
+        value={last_name}
+        onChange={(e) => setLast_name(e.target.value)}
+      />
+      
 
       {/* Email Input */}
       <input
@@ -82,31 +120,28 @@ const Register = ({ className, onLoginClick }) => {
         name="email"
         placeholder="Email"
         autoComplete="off"
-        value={formData.email}
-        onChange={handleChange}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
-      {errors.email && <p className="error">{errors.email}</p>}
 
       {/* Password Input */}
       <input
         type="password"
         name="password"
         placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
-      {errors.password && <p className="error">{errors.password}</p>}
 
       {/* Confirm Password Input */}
       <input
         type="password"
         name="confirmPassword"
         placeholder="Confirm Password"
-        value={formData.confirmPassword}
-        onChange={handleChange}
+        value={confirm_password}
+        onChange={(e) => setconfirm_password(e.target.value)}
       />
-      {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-
+      {errors && <p className="error">{errors}</p>}
       <button className="form-btn sx log-in" type="button" onClick={onLoginClick}>
         Log In
       </button>
