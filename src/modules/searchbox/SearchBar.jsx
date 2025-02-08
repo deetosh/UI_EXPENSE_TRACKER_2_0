@@ -1,22 +1,19 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import "./SearchBar.css";
+import { callAPI } from '../../services/ApiHelper';
 
 export const SearchBar = ({ setResults, input, setInput }) => { // Receive props
-    const fetchData = (value) => {
-        fetch("https://jsonplaceholder.typicode.com/users")
-            .then((response) => response.json())
-            .then((json) => {
-                const results = json.filter((user) => {
-                    return (
-                        value &&
-                        user &&
-                        user.name &&
-                        user.name.toLowerCase().includes(value.toLowerCase())
-                    );
-                });
-                setResults(results);
-            });
+    const fetchData = async (value) => {
+        if (!value) {
+            setResults([]); // Clear results if input is empty
+            return;
+        }
+        const response = await callAPI('/admin/getusers', 'GET', {}, { user_name : value });
+
+        if (response && response.data) {
+            setResults(response.data); // Assuming response.data contains the results
+        }
     };
 
     const handleChange = (value) => {
