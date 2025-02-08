@@ -59,8 +59,11 @@ function Dashboard() {
     const [showInput, setShowInput] = useState(false);
 
     const handleBudgetChange = async (newBudget) => {
-        const response = await callAPI('/expenses/addBudget', 'POST', { }, { budget: newBudget });
+        setIsLoading(true);
+        const response = await callAPI('/expenses/setbudget', 'POST', { }, { budget: newBudget });
+        await fetchCategoryData();
         setShowInput(false);
+        setIsLoading(false);
     }
 
     if (isLoading) {
@@ -241,6 +244,7 @@ function Dashboard() {
                             }}
                             style={{
                                 display: showInput ? 'block' : 'none',
+                                padding: "10px",
                             }}
                         />
                         <img src="../../../icons/edit.svg" onClick={() => setShowInput(true)} style={{
