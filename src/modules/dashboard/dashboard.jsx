@@ -6,13 +6,15 @@ import { callAPI } from '../../services/ApiHelper';
 import DDropdown from '../../atoms/DDropdown';
 import DButton from '../../atoms/DButton';
 import Loader from '../../molecules/Loader';
+import MyPieChart2 from '../graph/Chart2';
 
 function Dashboard() {
     const [totalExpense, setTotalExpense] = useState(0);
     const [remainingBudget, setRemainingBudget] = useState(0);
+    const [piedata2, setPiedata2] = useState([])
     const piedata = [
-        { name: 'Used', value: totalExpense },
         { name: 'Remaining', value: remainingBudget },
+        { name: 'Used', value: totalExpense },
     ];
 
     const [graphType, setGraphType] = useState('Present Week');
@@ -29,6 +31,16 @@ function Dashboard() {
         const response = await callAPI('/expenses/daily', 'GET', {}, { type: graph_type });
         if (response.data && response.data.length > 0) {
             setGraphData(response.data);
+        }
+        setIsLoading(false);
+    }
+
+    const fetchPaymentData = async () => {
+        setIsLoading(true);
+        let graph_type = graphType === 'Present Week' ? 'weekly' : 'monthly';
+        const response = await callAPI('/expenses/payment_method', 'GET', {}, {type: graph_type});
+        if (response.data && response.data.length > 0) {
+            setPiedata2(response.data);
         }
         setIsLoading(false);
     }
@@ -115,16 +127,34 @@ function Dashboard() {
                 <div style={{
                     width: "30%",
                     height: "100%",
-                    padding: "20px",
+                    // padding: "20px",
                     boxSizing: "border-box",
                     boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.22)",
                     backgroundColor: "white",
                     borderRadius: "20px",
                 }}
                 >
-                    {/* <MyPieChart
-                        dataObjects={piedata}
-                    /> */}
+                    <div style={{
+                    height: "10%",
+                    width: "100%",
+                    textAlign: "left",
+                    fontSize: "20px",
+                    paddingLeft: "10px",
+                    paddingTop: "5px",
+                    fontWeight: "bold",
+                  }}>
+                  Payment Methode-wise Expense
+                  </div>
+                  <div style={{
+                    // paddingTop: "5px",
+                    height: "90%",
+                    width: "100%",
+                    // padding: "10px",
+                  }}>
+                    <MyPieChart2
+                        dataObjects={piedata2}
+                    />
+                    </div>
                 </div>
 
 
