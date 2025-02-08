@@ -15,6 +15,7 @@
 }
 
 .image-container {
+    margin-top: 10px;
     height: 150px;
     overflow: hidden;
     position: relative;
@@ -50,7 +51,7 @@
 }
 
 .budget-amount {
-    font-size: 14px;
+    font-size: 16px;
     color: #636e72;
     font-weight: 500;
 }
@@ -75,7 +76,7 @@
 
 /* Optional hover effect */
 .budget-card:hover .category-image {
-    transform: scale(1.05);
+    transform: scale(1.5);
     transition: transform 0.3s ease;
 }
 

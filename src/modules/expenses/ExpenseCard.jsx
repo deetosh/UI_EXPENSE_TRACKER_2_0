@@ -28,12 +28,12 @@ const ExpenseCard = ({ id, spent, percentage = 0 }) => {
       <div className="content-wrapper">
         <div className="budget-header">
           <h3 className="category-title">{title}</h3>
-          <div className="budget-amount">${spent.toLocaleString()}</div>
+          <div className="budget-amount">Rs {spent.toLocaleString()}</div>
         </div>
 
         <div className="progress-bar">
           <div
-            className={`progress-fill ${percentage > 25 ? 'over-threshold' : ''}`}
+            className={`progress-fill Rs {percentage > 25 ? 'over-threshold' : ''}`}
             style={{ width: `${percentage}%` }}
           ></div>
         </div>
