@@ -11,11 +11,11 @@ const ExpenseForm = ({ onAddExpense }) => {
   const [errors, setErrors] = useState({});
 
   const categories = [
-    'utility', 'transport', 'food', 'healthcare', 'others', 'education', 'investment', 'personal'
+    'education','food','healthcare','investment','personal','transport','utility','other'
   ];
 
   const paymentModes = [
-    'cash', 'credit/debit cards', 'UPI', 'cheque', 'digital wallets', 'NET banking', 'EMI'
+    'cash','credit/debit cards','UPI','cheque','digital wallets','NET banking','EMI'
   ];
 
   const validateForm = () => {
