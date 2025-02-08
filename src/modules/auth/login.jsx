@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import './auth.css';
+
 import { callAPI } from '../../services/ApiHelper'
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ className, onBackClick }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState('');
+
+  const navigate = useNavigate();
 
   // Email validation regex
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -41,7 +45,9 @@ const Login = ({ className, onBackClick }) => {
     console.log("response",response);
     if(!response.error){
       localStorage.setItem('name', response.data.firstName); // Example: Store token
-      window.location.href = '/app';
+      localStorage.setItem('access-token', response.data["access-token"]);
+      navigate('/app');
+      // window.location.href = '/app';
       setErrors('');
     }
     else{
