@@ -25,8 +25,7 @@ function Admin() {
 
     async function handleResultSelect(selectedName){
         setIsLoading(true);
-        const response = await callAPI("/expenses/add","POST");
-        setInput(selectedName);
+        const response = await callAPI();
         fetchData();
         setResults([]);
         setIsLoading(false);
