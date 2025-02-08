@@ -3,12 +3,13 @@ import './auth.css';
 
 import { callAPI } from '../../services/ApiHelper'
 import { useNavigate } from 'react-router-dom';
+import Loader from '../../molecules/Loader';
 
 const Login = ({ className, onBackClick }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState('');
-
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   // Email validation regex
@@ -18,25 +19,23 @@ const Login = ({ className, onBackClick }) => {
     e.preventDefault();
     // let validationErrors = {};
     setErrors('');
-
+    setIsLoading(true);
     // Check if email is valid
     if (!email.trim()) {
       // validationErrors.email = "Email is required";
       setErrors('Email is required');
       return;
     } else if (!isValidEmail(email)) {
-      // validationErrors.email = "Invalid email format";
       setErrors('Invalid email format');
       return;
     }
 
     // Check if password meets length requirement
     if (!password.trim()) {
-      // validationErrors.password = "Password is required";
       setErrors('Password is required');
       return;
-    } else if (password.length < 6) {
-      // validationErrors.password = "Password must be at least 6 characters";
+    } 
+    else if (password.length < 6) {
       setErrors('Password must be at least 6 characters');
       return;
     }
@@ -53,7 +52,7 @@ const Login = ({ className, onBackClick }) => {
     else{
       setErrors('Invalid email or password');
     }
-
+    setIsLoading(false);
   };
 
   const handleGoogleSignIn = async () => {
@@ -67,6 +66,9 @@ const Login = ({ className, onBackClick }) => {
     // else{
     //   setErrors('Invalid email or password');
     // }
+  }
+  if(isLoading){
+    return <Loader/>
   }
 
   return (

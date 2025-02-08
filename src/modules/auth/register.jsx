@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './auth.css';
 import { callAPI } from '../../services/ApiHelper'
+import Loader from '../../molecules/Loader';
 
 const Register = ({ className, onLoginClick ,onSuccess}) => {
   const [first_name, setFirst_name] = useState('');
@@ -9,7 +10,7 @@ const Register = ({ className, onLoginClick ,onSuccess}) => {
   const [password, setPassword] = useState('');
   const [confirm_password, setconfirm_password] = useState('');
   const [errors, setErrors] = useState('');
-
+  const [isLoading, setIsLoading] = useState(false);
 
   //  Email validation regex
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -18,7 +19,7 @@ const Register = ({ className, onLoginClick ,onSuccess}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors('');
-
+    setIsLoading(true);
     // Validate Name
     if (!first_name.trim()) {
       setErrors('First Name is required');
@@ -71,7 +72,7 @@ const Register = ({ className, onLoginClick ,onSuccess}) => {
     const response = await callAPI('/signup', 'POST',{first_name:first_name, last_name:last_name, email:email, password:password, confirm_password:confirm_password,role_name:'user'});
     console.log("response",response);
     // If all validations pass, proceed with submission
-    
+    setIsLoading(false);
     if(!response.error){
       onSuccess();
       setErrors('');
@@ -85,7 +86,9 @@ const Register = ({ className, onLoginClick ,onSuccess}) => {
       setErrors(response.message);
     }
   };
-
+  if(isLoading){
+    return <Loader/>
+  }
   return (
     <form className={`signUp ${className}`} onSubmit={handleSubmit}>
       <h3>Create Your Account</h3>

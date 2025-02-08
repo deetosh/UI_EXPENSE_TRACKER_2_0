@@ -8,6 +8,7 @@ import DButton from '../../atoms/DButton';
 import DTable from '../../atoms/table';
 import Loader from '../../molecules/Loader';
 import FilterForm from './addFilter';
+import EditForm from './editExpense';
 
 const columns=[
     {
@@ -36,6 +37,8 @@ function Expenses() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [isEditOpen, setIsEditOpen] = useState(false);
+    const [editData, setEditData] = useState({});
 
     const fetchData = async () => {
         setIsLoading(true);
@@ -80,7 +83,23 @@ function Expenses() {
         fetchData();
         setIsLoading(false);
     }
-
+    const handleEdit = async (expense) => {
+        console.log(expense);
+        setIsLoading(true);
+        const response = await callAPI(`/expenses/update`, "PATCH",expense);
+        fetchData();
+        setIsEditOpen(false);
+        setIsLoading(false);
+    }
+    const editExpense = async (id) => {
+        setIsEditOpen(true);
+        setEditData(data.find((expense)=>expense.id===id));
+        console.log("edit",editData);
+        
+        
+        
+        // const response = await callAPI(`/expenses/`, "POST",{},{expense_id:id});
+    }
     if(isLoading){
         return <Loader/>
     }
@@ -120,6 +139,7 @@ function Expenses() {
             headers={columns}
             data={data}
             onDelete={deleteExpense}
+            onEdit={editExpense}
         />
         </div>
         <Modal 
@@ -131,6 +151,15 @@ function Expenses() {
         > 
            <ExpenseForm onAddExpense={handleSubmit}/> 
         </Modal> 
+        <Modal 
+            openModal={isEditOpen}
+            setOpenModal={setIsEditOpen}
+            height={"60vh"}
+            width={"30vw"}
+            modalName={"Edit Expense"}
+        > 
+            <EditForm onEditExpense={handleEdit} data={editData}/> 
+        </Modal>
         <Modal
             openModal={isFilterOpen}
             setOpenModal={setIsFilterOpen}
