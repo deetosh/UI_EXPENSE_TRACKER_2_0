@@ -187,9 +187,11 @@ const MyLineChart = ({dataObjects}) => {
           }}>
     <XAxis dataKey="date" 
       domain={['dataMin', 'dataMax']}
+      padding={{ right: 10 }}
     />
     <YAxis dataKey="amount"
       domain={[0, max]}
+      padding={{ top: 10}}
     />
     <Tooltip />
     <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
