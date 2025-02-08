@@ -22,9 +22,9 @@ const icon_map_dark = {
 }
 
 const signOut = async () => {
-    localStorage.removeItem('name');
-    localStorage.removeItem('access-token');
     const response = await callAPI('/signout', 'POST');
+    localStorage.removeItem('name');
+    localStorage.removeItem('access-token');    
     if(!response.error) window.location.href = '/';
 }
 

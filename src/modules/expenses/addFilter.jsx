@@ -12,7 +12,7 @@ const FilterForm = ({ onAddFilter }) => {
   const [errors, setErrors] = useState({});
 
   const categories = [
-    'utility', 'transport', 'food', 'healthcare', 'others', 'education', 'investment', 'personal'
+    'education','food','healthcare','investment','personal','transport','utility','other'
   ];
 
   const paymentModes = [
