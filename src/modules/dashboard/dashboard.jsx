@@ -8,20 +8,17 @@ import DButton from '../../atoms/DButton';
 import Loader from '../../molecules/Loader';
 
 function Dashboard() {
-
-    
-
+    const [totalExpense, setTotalExpense] = useState(0);
+    const [remainingBudget, setRemainingBudget] = useState(0);
     const piedata = [
-        { name: 'Used', value: 400 },
-        { name: 'Remaining', value: 400 },
+        { name: 'Used', value: totalExpense },
+        { name: 'Remaining', value: remainingBudget },
     ];
 
     const [graphType, setGraphType] = useState('Present Week');
     const [graphData, setGraphData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [categoryData, setCategoryData] = useState({});
-    const [totalExpense,setTotalExpense] = useState(0);
-    const [totalBudget,setTotalBudget] = useState(0);
 
     // Calculate the total spent by summing up the 'spent' field from all expenses
     // const totalSpent = expensesData.reduce((total, expense) => total + expense.spent, 0);
@@ -39,13 +36,16 @@ function Dashboard() {
     const fetchCategoryData = async () => {
         setIsLoading(true);
         let graph_type = graphType === 'Present Week' ? 'weekly' : 'monthly';
-        const response = await callAPI('/expenses/category', 'GET', {},{duration:graph_type});
+        const response = await callAPI('/expenses/category', 'GET', {}, { duration: graph_type });
         if (response.data) {
             // console.log('response',response.data);
             setCategoryData(response.data);
-            setTotalExpense(response.data.total_amount);
-            setTotalBudget(response.data.total_budget);
-            console.log("###",response);
+            const totalExp = response.data.total_amount;
+            const totalBudget = response.data.total_budget;
+            const remainingBudget = totalBudget >= totalExp ? totalBudget - totalExp : 0;
+            setTotalExpense(totalExp);
+            setRemainingBudget(remainingBudget);
+            console.log("###", response);
         }
         // console.log('category',categoryData);
         setIsLoading(false);
@@ -58,12 +58,13 @@ function Dashboard() {
 
     const [showInput, setShowInput] = useState(false);
 
-    const handleBudgetChange = (newBudget) => {
+    const handleBudgetChange = async (newBudget) => {
+        const response = await callAPI('/expenses/addBudget', 'POST', { }, { budget: newBudget });
         setShowInput(false);
     }
 
-    if(isLoading){
-        return <Loader/>
+    if (isLoading) {
+        return <Loader />
     }
 
     return (
@@ -103,9 +104,9 @@ function Dashboard() {
                     <div style={{
                         height: "85%",
                     }}>
-                    <MyLineChart
-                        dataObjects={graphData}
-                    />
+                        <MyLineChart
+                            dataObjects={graphData}
+                        />
                     </div>
                 </div>
                 <div style={{
@@ -191,61 +192,61 @@ function Dashboard() {
                     gap: "5px",
                 }}
                 >
-                  <div style={{
-                    height: "10%",
-                    width: "100%",
-                    textAlign: "left",
-                    fontSize: "20px",
-                    paddingLeft: "10px",
-                    // paddingTop: "5px",
-                    fontWeight: "bold",
-                  }}>
-                  Budget v/s Expense
-                  </div>
-                  <div style={{
-                    // paddingTop: "5px",
-                    height: "70%",
-                    width: "100%",
-                    // padding: "10px",
-                  }}>
-                    <MyPieChart
-                        dataObjects={piedata}
-                        //piedata={used, remaining}
-                    />
+                    <div style={{
+                        height: "10%",
+                        width: "100%",
+                        textAlign: "left",
+                        fontSize: "20px",
+                        paddingLeft: "10px",
+                        // paddingTop: "5px",
+                        fontWeight: "bold",
+                    }}>
+                        Budget v/s Expense
                     </div>
                     <div style={{
-                    height: "10%",
-                    width: "100%",
-                    // textAlign: "centre",
-                    // fontSize: "15px",
-                    paddingLeft: "10px",
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "10px",
-                    justifyContent: "center",
-                  }}>
-                  <input
-                    className='textbox'
-                    placeholder=" New Budget"
-                    onInput={()=>{
-                        var input = document.getElementsByTagName("input")[0];
-                        var val = input.value;
-                        val = val.replace(/^0+|[^\d]/g, '');
-                        input.value = val;
-                    }}
-                    onKeyDown={(event)=>{
-                        if(event.key === 'Enter'){
-                            handleBudgetChange(event.target.value);
-                        }
-                    }}
-                    style={{
-                        display: showInput ? 'block' : 'none',
-                    }}
-                  />
-                  <img src="../../../icons/edit.svg" onClick={()=>setShowInput(true)} style={{
-                    cursor: "pointer",
-                  }}></img>
-                  </div>
+                        // paddingTop: "5px",
+                        height: "70%",
+                        width: "100%",
+                        // padding: "10px",
+                    }}>
+                        <MyPieChart
+                            dataObjects={piedata}
+                        //piedata={used, remaining}
+                        />
+                    </div>
+                    <div style={{
+                        height: "10%",
+                        width: "100%",
+                        // textAlign: "centre",
+                        // fontSize: "15px",
+                        paddingLeft: "10px",
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px",
+                        justifyContent: "center",
+                    }}>
+                        <input
+                            className='textbox'
+                            placeholder=" New Budget"
+                            onInput={() => {
+                                var input = document.getElementsByTagName("input")[0];
+                                var val = input.value;
+                                val = val.replace(/^0+|[^\d]/g, '');
+                                input.value = val;
+                            }}
+                            onKeyDown={(event) => {
+                                if (event.key === 'Enter') {
+                                    handleBudgetChange(event.target.value);
+                                }
+                            }}
+                            style={{
+                                display: showInput ? 'block' : 'none',
+                            }}
+                        />
+                        <img src="../../../icons/edit.svg" onClick={() => setShowInput(true)} style={{
+                            cursor: "pointer",
+                        }}></img>
+                    </div>
                 </div>
             </div>
         </>
