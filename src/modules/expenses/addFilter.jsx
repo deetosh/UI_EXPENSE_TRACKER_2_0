@@ -81,13 +81,13 @@ const FilterForm = ({ onAddFilter }) => {
     onAddFilter(expense);
 
     // Reset form
-    setAmountFrom('');
-    setAmountTo('');
-    setDateFrom('');
-    setToDate('');
-    setCategory('');
-    setPaymentMode('');
-    setErrors({});
+    // setAmountFrom('');
+    // setAmountTo('');
+    // setDateFrom('');
+    // setToDate('');
+    // setCategory('');
+    // setPaymentMode('');
+    // setErrors({});
   };
 
   return (
