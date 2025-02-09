@@ -36,7 +36,7 @@ const MyPieChart2 = ({ dataObjects }) => {
         </Pie>
         <Tooltip content={<CustomTooltip />} />
         <svg x="37%" y="36%" width="100" height="100" style={{ transform: "translate(-25px, -25px)" }}>
-            <image href="../../../public/icons/payment-method.png" width="100" height="100" />
+            <image href="/icons/payment-method.png" width="100" height="100" />
         </svg>
         </PieChart>
         </ResponsiveContainer>
