@@ -19,7 +19,7 @@ export const callAPI = async (URL, method = 'POST', body = null, params = null) 
     };
 
     const response = await axios(config);
-    // console.log("response from apiHandler: ", response);
+    console.log("response from apiHandler: ", response);
 
     if(response.data.status === 401){
       console.log("Unauthorized");
@@ -34,13 +34,13 @@ export const callAPI = async (URL, method = 'POST', body = null, params = null) 
     };
   } catch (error) {
     console.error("Error",error);
-    if(error.response.data.status === 401){
+    if(error.status === 401){
       console.log("Unauthorized");
       localStorage.removeItem('name');
       window.location.href = '/';
     }
     return {
-      status: error.response.data?.status || null,
+      status: error.status || null,
       message: error.response.data?.message || null,
       data: error.response.data?.data ? error.response.data.data : null,
       error: true
