@@ -37,7 +37,8 @@ function Dashboard() {
 
     const fetchPaymentData = async () => {
         setIsLoading(true);
-        let graph_type = graphType === 'Present Week' ? 'weekly' : 'monthly';
+        // let graph_type = graphType === 'Present Week' ? 'weekly' : 'monthly';
+        let graph_type = 'monthly';
         const response = await callAPI('/expenses/payment_method', 'GET', {}, {type: graph_type});
         if (response.data && response.data.length > 0) {
             setPiedata2(response.data);
@@ -47,7 +48,8 @@ function Dashboard() {
 
     const fetchCategoryData = async () => {
         setIsLoading(true);
-        let graph_type = graphType === 'Present Week' ? 'weekly' : 'monthly';
+        // let graph_type = graphType === 'Present Week' ? 'weekly' : 'monthly';
+        let graph_type = 'monthly';
         const response = await callAPI('/expenses/category', 'GET', {}, { type: graph_type });
         if (response.data) {
             // console.log('response',response.data);
@@ -66,9 +68,12 @@ function Dashboard() {
 
     useEffect(() => {
         fetchGraphData();
+    }, [graphType]);
+
+    useEffect(()=>{
         fetchCategoryData();
         fetchPaymentData();
-    }, [graphType]);
+    },[]);
 
     const [showInput, setShowInput] = useState(false);
 
