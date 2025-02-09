@@ -60,9 +60,9 @@ import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import "./DDropdown.css";
 
-function DDropdown({ name, data, func }) {
+function DDropdown({ name, data, selected,setSelected }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [selected, setSelected] = useState(name);
+    // const [selected, setSelected] = useState(name);
 
     const toggleDropdown = () => {
         console.log("***");

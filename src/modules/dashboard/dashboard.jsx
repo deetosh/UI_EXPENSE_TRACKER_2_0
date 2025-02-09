@@ -120,7 +120,8 @@ function Dashboard() {
                         <DDropdown
                             name="Present Week"
                             data={["Present Week", "Present Month"]}
-                            func={setGraphType}
+                            selected={graphType}
+                            setSelected={setGraphType}
                         />
                     </div>
                     <div style={{
