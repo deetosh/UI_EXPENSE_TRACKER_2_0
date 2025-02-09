@@ -24,6 +24,7 @@ export const callAPI = async (URL, method = 'POST', body = null, params = null) 
     if(response.data.status === 401){
       console.log("Unauthorized");
       localStorage.removeItem('name');
+      localStorage.removeItem('access-token');
       window.location.href = '/';
     }
     return {
