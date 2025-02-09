@@ -3,14 +3,13 @@ import './auth.css';
 import { callAPI } from '../../services/ApiHelper'
 import Loader from '../../molecules/Loader';
 
-const Register = ({ className, onLoginClick ,onSuccess}) => {
+const Register = ({ className, onLoginClick ,onSuccess,setIsLoading}) => {
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm_password, setconfirm_password] = useState('');
   const [errors, setErrors] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   //  Email validation regex
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -86,9 +85,7 @@ const Register = ({ className, onLoginClick ,onSuccess}) => {
       setErrors(response.message);
     }
   };
-  if(isLoading){
-    return <Loader/>
-  }
+  
   return (
     <form className={`signUp ${className}`} onSubmit={handleSubmit}>
       <h3>Create Your Account</h3>
