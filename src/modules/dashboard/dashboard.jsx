@@ -36,7 +36,7 @@ function Dashboard() {
     const fetchCategoryData = async () => {
         setIsLoading(true);
         let graph_type = graphType === 'Present Week' ? 'weekly' : 'monthly';
-        const response = await callAPI('/expenses/category', 'GET', {}, { duration: graph_type });
+        const response = await callAPI('/expenses/category', 'GET', {}, { type: graph_type });
         if (response.data) {
             // console.log('response',response.data);
             setCategoryData(response.data);
@@ -245,6 +245,7 @@ function Dashboard() {
                             style={{
                                 display: showInput ? 'block' : 'none',
                                 padding: "10px",
+                                color: "black",
                             }}
                         />
                         <img src="../../../icons/edit.svg" onClick={() => setShowInput(true)} style={{

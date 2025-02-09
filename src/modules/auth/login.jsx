@@ -5,11 +5,11 @@ import { callAPI } from '../../services/ApiHelper'
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../molecules/Loader';
 
-const Login = ({ className, onBackClick }) => {
+const Login = ({ className, onBackClick, setIsLoading }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   // Email validation regex
@@ -67,9 +67,7 @@ const Login = ({ className, onBackClick }) => {
     //   setErrors('Invalid email or password');
     // }
   }
-  if(isLoading){
-    return <Loader/>
-  }
+
 
   return (
     <form className={`signIn ${className}`} onSubmit={handleSubmit}>
