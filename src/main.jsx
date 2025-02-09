@@ -7,8 +7,6 @@ import Dashboard from './modules/dashboard/dashboard.jsx'
 import Admin from './modules/admin/admin.jsx'
 import AuthPage from './modules/auth/authPage.jsx'
 import Expenses from './modules/expenses/expenses.jsx'
-import Errpage from './modules/Error_page/Errpage.jsx'
-import Server_error from './modules/Server_er/Server_error.jsx'
 
 
 const router = createBrowserRouter([
@@ -43,14 +41,6 @@ const router = createBrowserRouter([
       
     ]
   },
-  {
-    path:'/server_error',
-    element:<Server_error/>
-  },
-  {
-    path: '*',
-    element: <Errpage />
-  }
   
 ])
 
