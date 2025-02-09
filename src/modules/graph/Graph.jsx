@@ -194,7 +194,7 @@ const MyLineChart = ({dataObjects}) => {
       padding={{ top: 10}}
     />
     <Tooltip />
-    <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+    <CartesianGrid stroke="grey" strokeDasharray="5 5" />
     <Line type="monotone" dataKey="amount" stroke="#493971" strokeWidth={3} dot={{r:5}} activeDot={{ r: 10 }}/>
   </LineChart>
   </ResponsiveContainer>

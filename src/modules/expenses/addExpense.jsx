@@ -153,7 +153,7 @@ const ExpenseForm = ({ onAddExpense }) => {
       <div className="add_Submit">
         <DButton
           text={'Add Expense'}
-          buttonClass="button-primary"
+          buttonClass="edit-btn-primary"
           onClick={(e) => { e.preventDefault(); handleSubmit(e); }}
         />
       </div>

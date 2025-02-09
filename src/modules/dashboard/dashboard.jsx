@@ -12,7 +12,7 @@ function Dashboard() {
     const [totalExpense, setTotalExpense] = useState(0);
     const [remainingBudget, setRemainingBudget] = useState(0);
     const [piedata2, setPiedata2] = useState([])
-    const piedata = [
+    let piedata = [
         { name: 'Remaining', value: remainingBudget },
         { name: 'Used', value: totalExpense },
     ];
@@ -55,6 +55,7 @@ function Dashboard() {
             const totalExp = response.data.total_amount;
             const totalBudget = response.data.total_budget;
             const remainingBudget = totalBudget >= totalExp ? totalBudget - totalExp : 0;
+            console.log("###", totalExp, totalBudget, remainingBudget);
             setTotalExpense(totalExp);
             setRemainingBudget(remainingBudget);
             console.log("###", response);
@@ -66,6 +67,7 @@ function Dashboard() {
     useEffect(() => {
         fetchGraphData();
         fetchCategoryData();
+        fetchPaymentData();
     }, [graphType]);
 
     const [showInput, setShowInput] = useState(false);
