@@ -179,7 +179,7 @@ const FilterForm = ({ onAddFilter }) => {
       <div className="add_Submit">
         <DButton
           text={'Add Filter'}
-          buttonClass="button-primary"
+          buttonClass="edit-btn-primary"
           onClick={(e) => { e.preventDefault(); handleSubmit(e); }}
         />
       </div>

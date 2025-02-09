@@ -27,7 +27,7 @@ const MyPieChart2 = ({ dataObjects }) => {
           innerRadius={100}
           outerRadius={130}
           fill="#8884d8"
-          paddingAngle={5}
+          paddingAngle={0}
           dataKey="amount"
         >
         {dataObjects.map((entry, index) => (
